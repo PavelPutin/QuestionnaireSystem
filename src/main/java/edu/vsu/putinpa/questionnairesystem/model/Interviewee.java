@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "interviewee")
@@ -25,12 +26,17 @@ public class Interviewee {
     private MaritalStatus maritalStatus;
 
     @ManyToOne
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "country", referencedColumnName = "id")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private Country country;
 
     @OneToOne
-    @JoinColumn(referencedColumnName = "username")
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private Principal principal;
+
+    @OneToMany(mappedBy = "interviewee")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Choice> choices;
 }

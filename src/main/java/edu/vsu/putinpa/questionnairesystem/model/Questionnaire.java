@@ -1,0 +1,36 @@
+package edu.vsu.putinpa.questionnairesystem.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.List;
+import java.util.UUID;
+
+@Entity(name = "questionnaire")
+@Data
+@NoArgsConstructor
+public class Questionnaire {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+    private String name;
+    private String question;
+    private boolean multiple;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    private Author author;
+
+    @OneToMany(mappedBy = "questionnaire")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Option> options;
+
+    @OneToMany(mappedBy = "questionnaire")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Choice> choices;
+}

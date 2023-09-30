@@ -14,6 +14,6 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     @OneToOne
-    @JoinColumn(referencedColumnName = "username")
+    @JoinColumn(name = "username", referencedColumnName = "username")
     private Principal principal;
 }
