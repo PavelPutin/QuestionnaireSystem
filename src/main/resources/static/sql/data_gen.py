@@ -1,6 +1,7 @@
 import random
 import uuid
 import requests
+import psycopg2
 
 
 authors_amount_max = 10
@@ -85,7 +86,10 @@ init_option()
 
 
 def insert(file, table_name, to_insert, values):
-    file.write(f"INSERT INTO {table_name} ({to_insert}) VALUES ({values});\n")
+    query = f"INSERT INTO {table_name} ({to_insert}) VALUES ({values});"
+    conn.cursor().execute(query)
+    print(query)
+    conn.commit()
 
 
 questionnaires = []
@@ -96,14 +100,23 @@ def data_authors():
         for author in author_names:
             print(f"{author}")
 
-            table_name = "author"
-            to_insert = "id, name, password"
+            table_name = "principal"
+            to_insert = "username, password"
 
-            author_id = uuid.uuid4()
-            name = author
+            username = author
             password = "qwerty"
 
-            values = f"'{author_id}', '{name}', '{password}'"
+            values = f"'{username}', '{password}'"
+            insert(data_sql, table_name, to_insert, values)
+
+
+            table_name = "author"
+            to_insert = "id, username"
+
+            author_id = uuid.uuid4()
+            username = author
+            
+            values = f"'{author_id}', '{username}'"
             insert(data_sql, table_name, to_insert, values)
 
             questionnaire_amount = random.randint(0, questionnaires_amount_max)
@@ -144,8 +157,9 @@ def data_countries():
     with open("countries.txt", "r", encoding="utf8") as c_file:
         with open(file_name, "a", encoding="utf8") as data_sql:
             for line in c_file:
-                data_sql.write(line)
+                conn.cursor().execute(line)
                 countries.append(line[45:47])
+    conn.commit()
 
 choiced_questionnaries_max = 3
 
@@ -153,18 +167,26 @@ def data_interviewees():
     print("- data_interviewees")
     with open(file_name, "a", encoding="utf8") as data_sql:
         for _ in range(interviewees_max):
+            table_name = "principal"
+            to_insert = "username, password"
+
+            username = "interviewee" + str(_)
+            password = "qwerty"
+
+            values = f"'{username}', '{password}'"
+            insert(data_sql, table_name, to_insert, values)
+
             table_name = "interviewee"
-            to_insert = "id, login, password, age, gender, country, marital_status"
+            to_insert = "id, username, age, gender, country, marital_status"
 
             interviewee_id = uuid.uuid4()
-            login = "interviewee" + str(_)
-            password = "qwerty"
+            username = "interviewee" + str(_)
             age = random.randint(14, 70)
             gender = random.choice(('male', 'female'))
             country = random.choice(countries)
             marital_status = random.choice(('married', 'divorced', 'was_not_married'))
 
-            values = f"'{interviewee_id}', '{login}', '{password}', {age}, '{gender}', '{country}', '{marital_status}'"
+            values = f"'{interviewee_id}', '{username}', {age}, '{gender}', '{country}', '{marital_status}'"
             insert(data_sql, table_name, to_insert, values)
 
             choiced_questionnarie = random.sample(questionnaires, random.randint(1, choiced_questionnaries_max))
@@ -189,6 +211,36 @@ def data_interviewees():
     print("+ data_interviewees")
 
 
-data_authors()
-data_countries()
-data_interviewees()
+def clear_db():
+    with open("drop.sql", encoding="utf8") as drop:
+        query = drop.read()
+        conn.cursor().execute(query)
+        conn.commit()
+
+
+def create_tables():
+    with open("schema.sql", "r", encoding="utf8") as schema:
+        query = schema.read()
+        conn.cursor().execute(query)
+        conn.commit()
+
+
+try:
+    conn = psycopg2.conn = psycopg2.connect("dbname='questionnaire' user='questionnaire' password='qwerty' host='localhost' port='5555'")
+    print("connect to database")
+
+    clear_db()
+    create_tables()
+
+    conn.cursor().execute("select * from principal;")
+    conn.commit()
+
+    data_authors()
+    data_countries()
+    data_interviewees()
+except psycopg2.Error as e:
+    print("Не удалось подключиться к базе данных:", str(e))
+finally:
+    if conn is not None:
+        conn.close()
+        print("Соединение закрыто")

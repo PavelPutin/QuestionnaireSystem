@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS interviewee (
     age INT NOT NULL,
     gender gender_t NOT NULL,
     country VARCHAR(2),
-    marital_status мarital_status_t NOT NULL,
+    marital_status marital_status_t NOT NULL,
     CONSTRAINT country_fk FOREIGN KEY (country) REFERENCES country(id)
                                                                          ON DELETE SET NULL
                                                                          ON UPDATE CASCADE
