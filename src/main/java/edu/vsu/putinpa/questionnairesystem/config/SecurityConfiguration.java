@@ -29,7 +29,7 @@ public class SecurityConfiguration {
         http
                 .csrf(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers());
+                        .anyRequest().permitAll());
         return http.build();
     }
 }

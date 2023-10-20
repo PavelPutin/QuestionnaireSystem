@@ -26,7 +26,7 @@ public class Choice {
     @ManyToMany
     @JoinTable(
             name = "option_choice",
-            joinColumns = @JoinColumn(name = "option_id"),
-            inverseJoinColumns = @JoinColumn(name = "choice_id"))
+            joinColumns = @JoinColumn(name = "choice_id"),
+            inverseJoinColumns = @JoinColumn(name = "option_id"))
     private List<Option> options;
 }

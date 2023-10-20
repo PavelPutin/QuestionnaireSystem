@@ -18,7 +18,7 @@ public class Interviewee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID uuid;
+    private UUID id;
     private int age;
     @Enumerated(value = EnumType.STRING)
     private Gender gender;
