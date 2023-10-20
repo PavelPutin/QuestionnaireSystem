@@ -9,6 +9,7 @@ import edu.vsu.putinpa.questionnairesystem.model.Principal;
 import edu.vsu.putinpa.questionnairesystem.repository.AuthorsRepository;
 import edu.vsu.putinpa.questionnairesystem.repository.PrincipalsRepository;
 import edu.vsu.putinpa.questionnairesystem.validator.PrincipalUniqueUsernameValidator;
+import jakarta.validation.Valid;
 import jakarta.validation.Validation;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
