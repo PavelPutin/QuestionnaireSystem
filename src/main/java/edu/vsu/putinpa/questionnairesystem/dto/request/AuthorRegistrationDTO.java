@@ -1,4 +1,4 @@
 package edu.vsu.putinpa.questionnairesystem.dto.request;
 
-public record AuthorRegistrationDTO(String username) {
+public record AuthorRegistrationDTO(String username, String password) {
 }
