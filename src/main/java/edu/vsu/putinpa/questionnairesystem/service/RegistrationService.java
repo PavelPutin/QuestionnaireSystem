@@ -41,7 +41,6 @@ public class RegistrationService {
         author.setPrincipal(principal);
         principal.setAuthor(author);
 
-        principalsRepository.save(principal);
         authorsRepository.save(author);
     }
 }

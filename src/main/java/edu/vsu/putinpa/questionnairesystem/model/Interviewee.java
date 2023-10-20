@@ -31,7 +31,7 @@ public class Interviewee {
     @ToString.Exclude
     private Country country;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
     private Principal principal;
 

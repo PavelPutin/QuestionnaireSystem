@@ -15,8 +15,8 @@ public class ValidationException extends AppException {
     }
 
     private static String errorsToMessage(Errors errors) {
-        return errors.getAllErrors().stream()
-                .map(objectError -> objectError.getObjectName() + ": " + objectError.getDefaultMessage())
+        return errors.getFieldErrors().stream()
+                .map(objectError -> objectError.getField() + ": " + objectError.getDefaultMessage())
                 .collect(joining("; ", "[", "]"));
     }
 }
