@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity(name = "author")
@@ -17,4 +18,7 @@ public class Author {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "username", referencedColumnName = "username")
     private Principal principal;
+
+    @OneToMany(mappedBy = "author")
+    private List<Questionnaire> questionnaires;
 }
