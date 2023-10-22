@@ -1,10 +1,12 @@
 package edu.vsu.putinpa.questionnairesystem.model;
 
+import io.hypersistence.utils.hibernate.type.basic.PostgreSQLEnumType;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,10 +21,17 @@ public class Interviewee {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     private int age;
+
     @Enumerated(value = EnumType.STRING)
+    @Column(columnDefinition = "gender_t")
+    @Type(PostgreSQLEnumType.class)
     private Gender gender;
+
     @Enumerated(value = EnumType.STRING)
+    @Column(columnDefinition = "marital_status_t")
+    @Type(PostgreSQLEnumType.class)
     private MaritalStatus maritalStatus;
 
     @ManyToOne
