@@ -13,8 +13,8 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 public class Interviewee {
-    enum Gender {male, female}
-    enum MaritalStatus {married, divorced, was_not_married}
+    public enum Gender {male, female}
+    public enum MaritalStatus {married, divorced, was_not_married}
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

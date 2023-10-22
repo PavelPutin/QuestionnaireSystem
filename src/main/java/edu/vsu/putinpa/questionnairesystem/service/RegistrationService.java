@@ -2,6 +2,7 @@ package edu.vsu.putinpa.questionnairesystem.service;
 
 
 import edu.vsu.putinpa.questionnairesystem.dto.request.AuthorRegistrationDTO;
+import edu.vsu.putinpa.questionnairesystem.dto.request.IntervieweeRegistrationDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.model.Author;
 import edu.vsu.putinpa.questionnairesystem.model.Principal;
@@ -45,5 +46,12 @@ public class RegistrationService {
         principal.setAuthor(author);
 
         authorsRepository.save(author);
+    }
+
+    public void registerInterviewee(IntervieweeRegistrationDTO intervieweeRegistration, Errors errors) {
+        System.out.println(intervieweeRegistration);
+        if (errors.hasErrors()) {
+            throw new ValidationException(errors);
+        }
     }
 }
