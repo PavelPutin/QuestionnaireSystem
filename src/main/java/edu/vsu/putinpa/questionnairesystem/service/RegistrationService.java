@@ -27,14 +27,19 @@ public class RegistrationService {
     }
 
     public void registerAuthor(AuthorRegistrationDTO authorRegistration, Errors errors) {
-        Principal principal = new Principal();
-        principal.setUsername(authorRegistration.username());
+        Principal principal = principalsRepository.getPrincipalByUsername(authorRegistration.username())
+                .orElseGet(() -> {
+                    Principal toReturn = new Principal();
+                    toReturn.setUsername(authorRegistration.username());
+                    toReturn.setPassword(passwordEncoder.encode(authorRegistration.password()));
+                    return toReturn;
+                });
+
         principalAuthorUniqueValidator.validate(principal, errors);
         if (errors.hasErrors()) {
             throw new ValidationException(errors);
         }
 
-        principal.setPassword(passwordEncoder.encode(authorRegistration.password()));
         Author author = new Author();
         author.setPrincipal(principal);
         principal.setAuthor(author);
