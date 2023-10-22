@@ -1,16 +1,13 @@
 package edu.vsu.putinpa.questionnairesystem.service;
 
 
-import ch.qos.logback.classic.encoder.JsonEncoder;
 import edu.vsu.putinpa.questionnairesystem.dto.request.AuthorRegistrationDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.model.Author;
 import edu.vsu.putinpa.questionnairesystem.model.Principal;
 import edu.vsu.putinpa.questionnairesystem.repository.AuthorsRepository;
 import edu.vsu.putinpa.questionnairesystem.repository.PrincipalsRepository;
-import edu.vsu.putinpa.questionnairesystem.validator.PrincipalUniqueUsernameValidator;
-import jakarta.validation.Valid;
-import jakarta.validation.Validation;
+import edu.vsu.putinpa.questionnairesystem.validator.PrincipalAuthorUniqueValidator;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -20,19 +17,19 @@ public class RegistrationService {
     private final PrincipalsRepository principalsRepository;
     private final AuthorsRepository authorsRepository;
     private final PasswordEncoder passwordEncoder;
-    private final PrincipalUniqueUsernameValidator principalUniqueUsernameValidator;
+    private final PrincipalAuthorUniqueValidator principalAuthorUniqueValidator;
 
-    public RegistrationService(PrincipalsRepository principalsRepository, AuthorsRepository authorsRepository, PasswordEncoder passwordEncoder, PrincipalUniqueUsernameValidator principalUniqueUsernameValidator) {
+    public RegistrationService(PrincipalsRepository principalsRepository, AuthorsRepository authorsRepository, PasswordEncoder passwordEncoder, PrincipalAuthorUniqueValidator principalAuthorUniqueValidator) {
         this.principalsRepository = principalsRepository;
         this.authorsRepository = authorsRepository;
         this.passwordEncoder = passwordEncoder;
-        this.principalUniqueUsernameValidator = principalUniqueUsernameValidator;
+        this.principalAuthorUniqueValidator = principalAuthorUniqueValidator;
     }
 
     public void registerAuthor(AuthorRegistrationDTO authorRegistration, Errors errors) {
         Principal principal = new Principal();
         principal.setUsername(authorRegistration.username());
-        principalUniqueUsernameValidator.validate(principal, errors);
+        principalAuthorUniqueValidator.validate(principal, errors);
         if (errors.hasErrors()) {
             throw new ValidationException(errors);
         }
