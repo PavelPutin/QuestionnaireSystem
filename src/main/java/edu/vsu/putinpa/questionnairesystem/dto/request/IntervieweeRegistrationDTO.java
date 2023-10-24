@@ -1,7 +1,5 @@
 package edu.vsu.putinpa.questionnairesystem.dto.request;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import edu.vsu.putinpa.questionnairesystem.model.Interviewee;
 import edu.vsu.putinpa.questionnairesystem.validator.CountryExists;
 import edu.vsu.putinpa.questionnairesystem.validator.UniqueInterviewee;

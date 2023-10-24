@@ -1,6 +1,5 @@
 package edu.vsu.putinpa.questionnairesystem.repository;
 
-import edu.vsu.putinpa.questionnairesystem.model.Author;
 import edu.vsu.putinpa.questionnairesystem.model.Principal;
 import org.springframework.data.jpa.repository.JpaRepository;
 
