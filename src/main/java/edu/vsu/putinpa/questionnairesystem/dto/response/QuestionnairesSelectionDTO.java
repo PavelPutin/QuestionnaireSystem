@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.UUID;
 
 public record QuestionnairesSelectionDTO(
-    List<QuestionnairesSelectionItemDTO> questionnaires
+    List<ItemDTO> questionnaires
 ) {
-    record QuestionnairesSelectionItemDTO(
+    public record ItemDTO(
             UUID id,
             String name,
             String question,
