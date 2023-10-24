@@ -12,11 +12,11 @@ public record PrincipalDetails(Principal principal) implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-        if (principal.getAuthor() == null) {
+        if (principal.getAuthor() != null) {
             authority = new SimpleGrantedAuthority("ROLE_AUTHOR");
         }
 
-        if (principal.getInterviewee() == null) {
+        if (principal.getInterviewee() != null) {
             authority = new SimpleGrantedAuthority("ROLE_INTERVIEWEE");
         }
 
