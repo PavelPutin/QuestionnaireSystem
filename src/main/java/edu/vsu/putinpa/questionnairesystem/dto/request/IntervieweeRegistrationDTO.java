@@ -18,7 +18,7 @@ public record IntervieweeRegistrationDTO(
         @Length(max = 60, message = "Длина пароля не должна превосходить 60 символов")
         @NotNull(message = "Пароль обязателен")
         String password,
-        @Min(value = 0, message = "Возраст должен быть неотрицательным числом")
+        @Min(value = 1, message = "Возраст должен быть положительным числом")
         @NotNull(message = "Возраст обязателен")
         Integer age,
         @NotNull(message = "Пол обязателен")

@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS country (
 CREATE TABLE IF NOT EXISTS interviewee (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
     username VARCHAR(100) NOT NULL UNIQUE REFERENCES principal(username) ON DELETE CASCADE ON UPDATE CASCADE,
-    age INT NOT NULL,
+    age INT NOT NULL CHECK (age > 0),
     gender gender_t NOT NULL,
     country VARCHAR(2),
     marital_status marital_status_t NOT NULL,
