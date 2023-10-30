@@ -1,8 +1,8 @@
 package edu.vsu.putinpa.questionnairesystem.service;
 
 
-import edu.vsu.putinpa.questionnairesystem.dto.request.AuthorRegistrationDTO;
-import edu.vsu.putinpa.questionnairesystem.dto.request.IntervieweeRegistrationDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.AuthorRegistrationDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.IntervieweeRegistrationDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.model.Author;
 import edu.vsu.putinpa.questionnairesystem.model.Country;

@@ -1,4 +1,4 @@
-package edu.vsu.putinpa.questionnairesystem.dto.response;
+package edu.vsu.putinpa.questionnairesystem.api.dto.response;
 
 import java.util.List;
 import java.util.UUID;

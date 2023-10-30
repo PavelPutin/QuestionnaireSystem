@@ -1,4 +1,4 @@
-package edu.vsu.putinpa.questionnairesystem.dto.request;
+package edu.vsu.putinpa.questionnairesystem.api.dto.request;
 
 import edu.vsu.putinpa.questionnairesystem.model.Interviewee;
 import edu.vsu.putinpa.questionnairesystem.validator.CountryExists;

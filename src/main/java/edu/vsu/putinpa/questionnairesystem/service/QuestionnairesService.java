@@ -1,6 +1,6 @@
 package edu.vsu.putinpa.questionnairesystem.service;
 
-import edu.vsu.putinpa.questionnairesystem.dto.response.QuestionnairesSelectionDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnairesSelectionDTO;
 import edu.vsu.putinpa.questionnairesystem.model.Questionnaire;
 import edu.vsu.putinpa.questionnairesystem.repository.QuestionnairesRepository;
 import org.springframework.stereotype.Component;

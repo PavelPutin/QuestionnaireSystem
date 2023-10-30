@@ -1,6 +1,6 @@
 package edu.vsu.putinpa.questionnairesystem.controller;
 
-import edu.vsu.putinpa.questionnairesystem.dto.response.AuthorProfileDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.AuthorProfileDTO;
 import edu.vsu.putinpa.questionnairesystem.security.PrincipalDetails;
 import edu.vsu.putinpa.questionnairesystem.service.AuthorsService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

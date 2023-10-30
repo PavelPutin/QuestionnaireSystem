@@ -1,4 +1,4 @@
-package edu.vsu.putinpa.questionnairesystem.dto.request;
+package edu.vsu.putinpa.questionnairesystem.api.dto.request;
 
 import edu.vsu.putinpa.questionnairesystem.validator.UniqueAuthor;
 import jakarta.validation.constraints.NotNull;
