@@ -25,7 +25,7 @@ create table if not exists questionnaire
     question  varchar(300) not null,
     author_id uuid,
     multiple  boolean      not null,
-    constraint author_fk foreign key (author_id) references author (id)
+    constraint author_fk foreign key (author_id) references user_table(id)
         on delete set null
         on update cascade
 );
