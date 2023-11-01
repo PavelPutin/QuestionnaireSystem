@@ -2,8 +2,7 @@ package edu.vsu.putinpa.questionnairesystem.controller;
 
 
 import edu.vsu.putinpa.questionnairesystem.api.AuthApi;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.AuthorRegistrationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.IntervieweeRegistrationDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
 import edu.vsu.putinpa.questionnairesystem.service.RegistrationService;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +17,7 @@ public class AuthController implements AuthApi {
     }
 
     @Override
-    public void registerAuthor(AuthorRegistrationDTO authorRegistration, Errors errors) {
-        registrationService.registerAuthor(authorRegistration, errors);
-    }
-
-    @Override
-    public void registerInterviewee(IntervieweeRegistrationDTO intervieweeRegistration, Errors errors) {
-        registrationService.registerInterviewee(intervieweeRegistration, errors);
+    public void register(RegistrationDTO registrationDTO, Errors errors) {
+        registrationService.registerInterviewee(registrationDTO, errors);
     }
 }

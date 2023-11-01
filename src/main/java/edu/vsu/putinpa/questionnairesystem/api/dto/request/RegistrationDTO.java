@@ -8,7 +8,7 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-public record IntervieweeRegistrationDTO(
+public record RegistrationDTO(
         @Length(max = 100, message = "Длина имени пользователя не должна превосходить 100 символов")
         @NotNull(message = "Имя пользователя обязательно")
         @UniqueInterviewee

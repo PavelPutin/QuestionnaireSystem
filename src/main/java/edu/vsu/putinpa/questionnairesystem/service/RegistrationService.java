@@ -2,7 +2,7 @@ package edu.vsu.putinpa.questionnairesystem.service;
 
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.AuthorRegistrationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.IntervieweeRegistrationDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.model.Author;
 import edu.vsu.putinpa.questionnairesystem.model.Country;
@@ -52,7 +52,7 @@ public class RegistrationService {
         authorsRepository.save(author);
     }
 
-    public void registerInterviewee(IntervieweeRegistrationDTO intervieweeRegistration, Errors errors) {
+    public void registerInterviewee(RegistrationDTO intervieweeRegistration, Errors errors) {
         Principal principal = principalsRepository.getPrincipalByUsername(intervieweeRegistration.username())
                 .orElseGet(() -> {
                     Principal toReturn = new Principal();
