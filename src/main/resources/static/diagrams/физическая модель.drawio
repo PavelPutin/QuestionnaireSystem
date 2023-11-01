@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-30T19:19:39.816Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="-whqp1dHeRiNdJSKRq9R" version="22.0.8" type="device">
+<mxfile host="app.diagrams.net" modified="2023-11-01T09:10:19.192Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="4VoxHVZBbz9JDIjannGY" version="22.0.8" type="device">
   <diagram name="Страница — 1" id="QSBf3perLv_kSxdTgKMJ">
-    <mxGraphModel dx="3695" dy="391" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1737" dy="-620" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -115,7 +115,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="QNqdyhj0v0ewK2Hj2IED-53" value="choice" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry x="520" y="1490" width="290" height="180" as="geometry" />
+          <mxGeometry x="520" y="1490" width="290" height="210" as="geometry" />
         </mxCell>
         <mxCell id="QNqdyhj0v0ewK2Hj2IED-54" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="QNqdyhj0v0ewK2Hj2IED-53" vertex="1">
           <mxGeometry y="30" width="290" height="30" as="geometry" />
@@ -169,8 +169,21 @@
             <mxRectangle width="260" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="QNqdyhj0v0ewK2Hj2IED-108" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="QNqdyhj0v0ewK2Hj2IED-53" vertex="1">
+        <mxCell id="Mcjut4qaFdIiztMgJWjg-1" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;fontSize=16;" vertex="1" parent="QNqdyhj0v0ewK2Hj2IED-53">
           <mxGeometry y="150" width="290" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Mcjut4qaFdIiztMgJWjg-2" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;fontSize=16;" vertex="1" parent="Mcjut4qaFdIiztMgJWjg-1">
+          <mxGeometry width="30" height="30" as="geometry">
+            <mxRectangle width="30" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Mcjut4qaFdIiztMgJWjg-3" value="мarital_status:&#xa;    enum marital_t (married, divorced, was_not_married) not null" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;fontSize=12;" vertex="1" parent="Mcjut4qaFdIiztMgJWjg-1">
+          <mxGeometry x="30" width="260" height="30" as="geometry">
+            <mxRectangle width="260" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QNqdyhj0v0ewK2Hj2IED-108" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="QNqdyhj0v0ewK2Hj2IED-53" vertex="1">
+          <mxGeometry y="180" width="290" height="30" as="geometry" />
         </mxCell>
         <mxCell id="QNqdyhj0v0ewK2Hj2IED-109" value="FK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;" parent="QNqdyhj0v0ewK2Hj2IED-108" vertex="1">
           <mxGeometry width="30" height="30" as="geometry">

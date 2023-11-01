@@ -1,9 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.service;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.AuthorProfileDTO;
-import edu.vsu.putinpa.questionnairesystem.model.Author;
 import edu.vsu.putinpa.questionnairesystem.model.Questionnaire;
-import edu.vsu.putinpa.questionnairesystem.repository.PrincipalsRepository;
 import edu.vsu.putinpa.questionnairesystem.security.PrincipalDetails;
 import org.springframework.stereotype.Component;
 

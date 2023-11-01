@@ -1,7 +1,5 @@
 package edu.vsu.putinpa.questionnairesystem.validator;
 
-import edu.vsu.putinpa.questionnairesystem.model.Principal;
-import edu.vsu.putinpa.questionnairesystem.repository.PrincipalsRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;

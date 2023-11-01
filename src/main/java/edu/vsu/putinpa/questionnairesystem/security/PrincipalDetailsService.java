@@ -1,7 +1,5 @@
 package edu.vsu.putinpa.questionnairesystem.security;
 
-import edu.vsu.putinpa.questionnairesystem.model.Principal;
-import edu.vsu.putinpa.questionnairesystem.repository.PrincipalsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

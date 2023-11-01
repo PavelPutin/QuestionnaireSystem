@@ -16,5 +16,7 @@ public class Country {
     private String id;
     private String value;
     @OneToMany(mappedBy = "country")
-    private List<Interviewee> interviewees;
+    private List<User> users;
+    @OneToMany(mappedBy = "country")
+    private List<Choice> choices;
 }

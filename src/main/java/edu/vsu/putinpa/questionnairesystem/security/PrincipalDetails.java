@@ -1,6 +1,5 @@
 package edu.vsu.putinpa.questionnairesystem.security;
 
-import edu.vsu.putinpa.questionnairesystem.model.Principal;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,7 +15,7 @@ public record PrincipalDetails(Principal principal) implements UserDetails {
             authority = new SimpleGrantedAuthority("ROLE_AUTHOR");
         }
 
-        if (principal.getInterviewee() != null) {
+        if (principal.getUser() != null) {
             authority = new SimpleGrantedAuthority("ROLE_INTERVIEWEE");
         }
 

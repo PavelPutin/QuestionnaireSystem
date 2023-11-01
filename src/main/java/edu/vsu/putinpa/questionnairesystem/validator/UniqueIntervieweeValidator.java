@@ -1,7 +1,5 @@
 package edu.vsu.putinpa.questionnairesystem.validator;
 
-import edu.vsu.putinpa.questionnairesystem.model.Principal;
-import edu.vsu.putinpa.questionnairesystem.repository.PrincipalsRepository;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.stereotype.Component;
@@ -18,6 +16,6 @@ public class UniqueIntervieweeValidator implements ConstraintValidator<UniqueInt
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         Optional<Principal> principal = principalsRepository.getPrincipalByUsername(value);
-        return !(principal.isPresent() && principal.get().getInterviewee() != null);
+        return !(principal.isPresent() && principal.get().getUser() != null);
     }
 }

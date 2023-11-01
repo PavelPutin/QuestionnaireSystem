@@ -11,16 +11,17 @@ import org.hibernate.annotations.Type;
 import java.util.List;
 import java.util.UUID;
 
-@Entity(name = "interviewee")
+@Entity(name = "user_table")
 @Data
 @NoArgsConstructor
-public class Interviewee {
-    public enum Gender {male, female}
-    public enum MaritalStatus {married, divorced, was_not_married}
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
+    private String username;
+    private String password;
 
     private int age;
 
@@ -40,12 +41,9 @@ public class Interviewee {
     @ToString.Exclude
     private Country country;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "username", referencedColumnName = "username")
-    private Principal principal;
-
-    @OneToMany(mappedBy = "interviewee")
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private List<Choice> choices;
+    @ManyToMany
+    @JoinTable(
+            name = "answered",
+            joinColumns = @JoinColumn(name = "questionnaires", referencedColumnName = "author_id"))
+    private List<Questionnaire> questionnaires;
 }

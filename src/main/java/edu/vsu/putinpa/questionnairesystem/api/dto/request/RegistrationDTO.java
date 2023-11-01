@@ -1,6 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.api.dto.request;
 
-import edu.vsu.putinpa.questionnairesystem.model.Interviewee;
+import edu.vsu.putinpa.questionnairesystem.model.Gender;
+import edu.vsu.putinpa.questionnairesystem.model.MaritalStatus;
 import edu.vsu.putinpa.questionnairesystem.validator.CountryExists;
 import edu.vsu.putinpa.questionnairesystem.validator.UniqueInterviewee;
 import edu.vsu.putinpa.questionnairesystem.validator.ValueOfEnum;
@@ -20,10 +21,10 @@ public record RegistrationDTO(
         @NotNull(message = "Возраст обязателен")
         Integer age,
         @NotNull(message = "Пол обязателен")
-        @ValueOfEnum(enumClass = Interviewee.Gender.class)
+        @ValueOfEnum(enumClass = Gender.class)
         String gender,
         @NotNull(message = "Семейное положение обязательно")
-        @ValueOfEnum(enumClass = Interviewee.MaritalStatus.class)
+        @ValueOfEnum(enumClass = MaritalStatus.class)
         String maritalStatus,
         @CountryExists
         String country

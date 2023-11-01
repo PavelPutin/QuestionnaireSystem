@@ -20,17 +20,11 @@ public class Questionnaire {
     private String question;
     private boolean multiple;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
-    private Author author;
+    @ManyToMany
+    private List<User> author;
 
     @OneToMany(mappedBy = "questionnaire")
     @EqualsAndHashCode.Exclude
     @ToString.Exclude
     private List<Option> options;
-
-    @OneToMany(mappedBy = "questionnaire")
-    @EqualsAndHashCode.Exclude
-    @ToString.Exclude
-    private List<Choice> choices;
 }
