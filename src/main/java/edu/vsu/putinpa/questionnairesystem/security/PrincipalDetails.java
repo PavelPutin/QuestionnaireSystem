@@ -1,5 +1,6 @@
 package edu.vsu.putinpa.questionnairesystem.security;
 
+import edu.vsu.putinpa.questionnairesystem.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,29 +8,21 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.Collections;
 
-public record PrincipalDetails(Principal principal) implements UserDetails {
+public record PrincipalDetails(User user) implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-        if (principal.getAuthor() != null) {
-            authority = new SimpleGrantedAuthority("ROLE_AUTHOR");
-        }
-
-        if (principal.getUser() != null) {
-            authority = new SimpleGrantedAuthority("ROLE_INTERVIEWEE");
-        }
-
         return Collections.singleton(authority);
     }
 
     @Override
     public String getPassword() {
-        return principal.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return principal.getUsername();
+        return user.getUsername();
     }
 
     @Override

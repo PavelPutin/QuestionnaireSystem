@@ -1,5 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.security;
 
+import edu.vsu.putinpa.questionnairesystem.model.User;
+import edu.vsu.putinpa.questionnairesystem.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,16 +12,16 @@ import java.util.Optional;
 
 @Component
 public class PrincipalDetailsService implements UserDetailsService {
-    private final PrincipalsRepository repository;
+    private final UserRepository repository;
 
     @Autowired
-    public PrincipalDetailsService(PrincipalsRepository repository) {
+    public PrincipalDetailsService(UserRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Principal> optionalPrincipal = repository.getPrincipalByUsername(username);
+        Optional<User> optionalPrincipal = repository.getByUsername(username);
         if (optionalPrincipal.isPresent()) {
             return new PrincipalDetails(optionalPrincipal.get());
         }
