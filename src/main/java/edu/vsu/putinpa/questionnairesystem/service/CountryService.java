@@ -1,9 +1,14 @@
 package edu.vsu.putinpa.questionnairesystem.service;
 
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.UpdateCountryDto;
+import edu.vsu.putinpa.questionnairesystem.exception.AppException;
+import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.model.Country;
 import edu.vsu.putinpa.questionnairesystem.repository.CountriesRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 
@@ -17,6 +22,26 @@ public class CountryService {
     }
 
     public Country getById(String id) {
-        return countriesRepository.findById(id);
+        return countriesRepository.findById(id)
+                .orElseThrow(() -> new AppException("Country wasn't found", HttpStatus.NOT_FOUND, null));
+    }
+
+    public Country updateName(String id, UpdateCountryDto updateCountryDto) {
+        Country country = getById(id);
+        country.setValue(updateCountryDto.getName());
+        countriesRepository.save(country);
+        return country;
+    }
+
+    public void delete(String id) {
+        countriesRepository.deleteById(id);
+    }
+
+    public Country create(Country toCreate) {
+        if (countriesRepository.existsById(toCreate.getId())) {
+            throw new AppException("Can't create country: one is already exists", HttpStatus.BAD_REQUEST, null);
+        }
+        countriesRepository.save(toCreate);
+        return toCreate;
     }
 }

@@ -2,7 +2,9 @@ package edu.vsu.putinpa.questionnairesystem.api;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.UpdateCountryDto;
 import edu.vsu.putinpa.questionnairesystem.model.Country;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,12 +14,12 @@ public interface CountryApi {
     List<Country> getAll();
 
     @PatchMapping("/{id}")
-    Country updateName(UpdateCountryDto updateCountryDto, @PathVariable String id);
+    Country updateName(@PathVariable String id, @Valid UpdateCountryDto updateCountryDto, BindingResult errors);
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable String id);
 
     @PostMapping
-    Country create(Country country);
+    Country create(@Valid Country country, BindingResult errors);
 }
