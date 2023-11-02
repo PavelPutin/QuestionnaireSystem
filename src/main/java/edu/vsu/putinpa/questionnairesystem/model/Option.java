@@ -19,6 +19,6 @@ public class Option {
     @JoinColumn(name = "questionnaire_id", referencedColumnName = "id")
     private Questionnaire questionnaire;
 
-    @ManyToMany(mappedBy = "options")
+    @OneToMany
     private List<Choice> choices;
 }
