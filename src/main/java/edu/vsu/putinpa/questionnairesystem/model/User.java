@@ -41,9 +41,12 @@ public class User {
     @ToString.Exclude
     private Country country;
 
+    @OneToMany
+    private List<Questionnaire> written;
+
     @ManyToMany
     @JoinTable(
             name = "answered",
-            joinColumns = @JoinColumn(name = "questionnaires", referencedColumnName = "author_id"))
-    private List<Questionnaire> questionnaires;
+            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "questionnaire_id"))
+    private List<Questionnaire> answered;
 }

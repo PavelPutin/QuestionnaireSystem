@@ -21,7 +21,10 @@ public class Questionnaire {
     private boolean multiple;
 
     @ManyToMany
-    private List<User> author;
+    private List<User> answered;
+
+    @ManyToOne
+    private User author;
 
     @OneToMany(mappedBy = "questionnaire")
     @EqualsAndHashCode.Exclude
