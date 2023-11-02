@@ -1,8 +1,8 @@
-package edu.vsu.putinpa.questionnairesystem.service;
+package edu.vsu.putinpa.questionnairesystem.app.service;
 
 
-import edu.vsu.putinpa.questionnairesystem.model.User;
-import edu.vsu.putinpa.questionnairesystem.repository.UserRepository;
+import edu.vsu.putinpa.questionnairesystem.item.model.User;
+import edu.vsu.putinpa.questionnairesystem.item.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.api.dto.request;
 
-import edu.vsu.putinpa.questionnairesystem.model.Gender;
-import edu.vsu.putinpa.questionnairesystem.model.MaritalStatus;
+import edu.vsu.putinpa.questionnairesystem.item.model.Gender;
+import edu.vsu.putinpa.questionnairesystem.item.model.MaritalStatus;
 import edu.vsu.putinpa.questionnairesystem.validator.CountryExists;
 import edu.vsu.putinpa.questionnairesystem.validator.ValueOfEnum;
 import jakarta.validation.constraints.Min;

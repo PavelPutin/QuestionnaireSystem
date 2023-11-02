@@ -1,10 +1,10 @@
-package edu.vsu.putinpa.questionnairesystem.controller;
+package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 import edu.vsu.putinpa.questionnairesystem.api.CountryApi;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.UpdateCountryDto;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
-import edu.vsu.putinpa.questionnairesystem.model.Country;
-import edu.vsu.putinpa.questionnairesystem.service.CountryService;
+import edu.vsu.putinpa.questionnairesystem.item.model.Country;
+import edu.vsu.putinpa.questionnairesystem.app.service.CountryService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;

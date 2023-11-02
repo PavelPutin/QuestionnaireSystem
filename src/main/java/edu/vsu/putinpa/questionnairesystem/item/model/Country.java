@@ -1,4 +1,4 @@
-package edu.vsu.putinpa.questionnairesystem.model;
+package edu.vsu.putinpa.questionnairesystem.item.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

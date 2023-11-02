@@ -1,8 +1,8 @@
-package edu.vsu.putinpa.questionnairesystem.mapper;
+package edu.vsu.putinpa.questionnairesystem.app.mapper;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
-import edu.vsu.putinpa.questionnairesystem.model.User;
-import edu.vsu.putinpa.questionnairesystem.service.CountryService;
+import edu.vsu.putinpa.questionnairesystem.item.model.User;
+import edu.vsu.putinpa.questionnairesystem.app.service.CountryService;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

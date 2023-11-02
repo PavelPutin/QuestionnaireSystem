@@ -1,12 +1,12 @@
-package edu.vsu.putinpa.questionnairesystem.controller;
+package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 
 import edu.vsu.putinpa.questionnairesystem.api.AuthApi;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
-import edu.vsu.putinpa.questionnairesystem.mapper.UserMapper;
-import edu.vsu.putinpa.questionnairesystem.model.User;
-import edu.vsu.putinpa.questionnairesystem.service.RegistrationService;
+import edu.vsu.putinpa.questionnairesystem.app.mapper.UserMapper;
+import edu.vsu.putinpa.questionnairesystem.item.model.User;
+import edu.vsu.putinpa.questionnairesystem.app.service.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;

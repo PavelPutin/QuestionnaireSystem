@@ -1,4 +1,4 @@
-package edu.vsu.putinpa.questionnairesystem.controller;
+package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.ErrorDTO;

@@ -1,9 +1,9 @@
-package edu.vsu.putinpa.questionnairesystem.service;
+package edu.vsu.putinpa.questionnairesystem.app.service;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.UpdateCountryDto;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
-import edu.vsu.putinpa.questionnairesystem.model.Country;
-import edu.vsu.putinpa.questionnairesystem.repository.CountriesRepository;
+import edu.vsu.putinpa.questionnairesystem.item.model.Country;
+import edu.vsu.putinpa.questionnairesystem.item.CountriesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package edu.vsu.putinpa.questionnairesystem.security;
+package edu.vsu.putinpa.questionnairesystem.app.security;
 
-import edu.vsu.putinpa.questionnairesystem.model.User;
+import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

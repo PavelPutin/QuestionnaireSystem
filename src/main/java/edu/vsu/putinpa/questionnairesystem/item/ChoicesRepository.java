@@ -1,6 +1,6 @@
-package edu.vsu.putinpa.questionnairesystem.repository;
+package edu.vsu.putinpa.questionnairesystem.item;
 
-import edu.vsu.putinpa.questionnairesystem.model.Choice;
+import edu.vsu.putinpa.questionnairesystem.item.model.Choice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

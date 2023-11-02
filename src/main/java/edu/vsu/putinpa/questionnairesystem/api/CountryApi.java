@@ -1,7 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.api;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.UpdateCountryDto;
-import edu.vsu.putinpa.questionnairesystem.model.Country;
+import edu.vsu.putinpa.questionnairesystem.item.model.Country;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
