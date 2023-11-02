@@ -29,5 +29,8 @@ public class Choice {
     private MaritalStatus maritalStatus;
 
     @ManyToOne
+    private Country country;
+
+    @ManyToOne
     private Option option;
 }
