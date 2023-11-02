@@ -8,6 +8,6 @@ import org.springframework.context.annotation.Configuration;
 public class MappersConfiguration {
     @Bean
     public UserMapper userMapper() {
-        return Mappers.getMapper(UserMapper.class);
+        return UserMapper.INSTANCE;
     }
 }
