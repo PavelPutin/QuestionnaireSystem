@@ -24,4 +24,9 @@ public class UsersController implements UserApi {
     public UserDTO getByUsername(String username) {
         return userMapper.toDto(usersService.getByUsername(username));
     }
+
+    @Override
+    public void delete(String username) {
+        usersService.delete(username);
+    }
 }

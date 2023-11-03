@@ -23,4 +23,8 @@ public class UsersService {
     public User getByUsername(String username) {
         return userRepository.getByUsername(username).orElseThrow(() -> new AppException("User not found", HttpStatus.NOT_FOUND, null));
     }
+
+    public void delete(String username) {
+        userRepository.deleteByUsername(username);
+    }
 }
