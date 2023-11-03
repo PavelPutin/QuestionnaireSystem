@@ -8,7 +8,7 @@ create table if not exists user_table
 (
     id             uuid default gen_random_uuid() primary key,
     username       varchar(100)     not null unique,
-    password       varchar(40)      not null,
+    password       varchar(60)      not null,
     age            int              not null check (age > 0),
     gender         gender_t         not null,
     country        varchar(2),
