@@ -19,4 +19,9 @@ public class UsersController implements UserApi {
     public List<UserDTO> getAll() {
         return userMapper.toDto(usersService.getAll());
     }
+
+    @Override
+    public UserDTO getByUsername(String username) {
+        return userMapper.toDto(usersService.getByUsername(username));
+    }
 }
