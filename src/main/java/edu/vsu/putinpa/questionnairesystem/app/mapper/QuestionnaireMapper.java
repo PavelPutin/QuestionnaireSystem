@@ -13,21 +13,12 @@ import java.util.List;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = OptionMapper.class)
 public interface QuestionnaireMapper {
-
-    @Mapping(source = "answered", target = "answeredAmount", qualifiedByName = "getAnsweredAmount")
-    @Mapping(source = "author", target = "authorName", qualifiedByName = "getAuthorName")
     List<QuestionnaireBriefDTO> toDto(List<Questionnaire> questionnaire);
 
-    @Mapping(source = "author", target = "authorName", qualifiedByName = "getAuthorName")
+    @Mapping(target = "answeredAmount", expression="java(questionnaire.getAnswered().size())")
+    @Mapping(target = "authorName", expression="java(questionnaire.getAuthor().getUsername())")
+    QuestionnaireBriefDTO toBriefDto(Questionnaire questionnaire);
+
+    @Mapping(target = "authorName", expression="java(questionnaire.getAuthor().getUsername())")
     QuestionnaireDTO toDto(Questionnaire questionnaire);
-
-    @Named("getAnsweredAmount")
-    static int getAnsweredAmount(List<User> answered) {
-        return answered.size();
-    }
-
-    @Named("getAuthorName")
-    static String getAuthorName(User author) {
-        return author.getUsername();
-    }
 }

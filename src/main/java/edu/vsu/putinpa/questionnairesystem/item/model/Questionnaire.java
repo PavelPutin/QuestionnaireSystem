@@ -20,7 +20,7 @@ public class Questionnaire {
     private String question;
     private boolean multiple;
 
-    @ManyToMany
+    @ManyToMany(mappedBy = "answered")
     private List<User> answered;
 
     @ManyToOne

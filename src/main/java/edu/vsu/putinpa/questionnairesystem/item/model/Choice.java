@@ -29,8 +29,10 @@ public class Choice {
     private MaritalStatus maritalStatus;
 
     @ManyToOne
+    @JoinColumn(name = "country", referencedColumnName = "id")
     private Country country;
 
     @ManyToOne
+    @JoinColumn(name = "option_id", referencedColumnName = "id")
     private Option option;
 }
