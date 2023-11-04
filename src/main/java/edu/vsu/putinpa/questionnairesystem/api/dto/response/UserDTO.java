@@ -14,5 +14,5 @@ public class UserDTO {
     private int age;
     private Gender gender;
     private MaritalStatus maritalStatus;
-    private Country country;
+    private CountryDTO country;
 }

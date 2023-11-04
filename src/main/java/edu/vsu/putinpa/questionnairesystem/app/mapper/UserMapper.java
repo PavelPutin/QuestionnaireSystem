@@ -10,7 +10,7 @@ import org.mapstruct.MappingConstants;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = CountryService.class)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = {CountryService.class, CountryMapper.class})
 public interface UserMapper {
     User toUser(RegistrationDTO registrationDTO);
     User toUser(UserUpdateDTO registrationDTO);
