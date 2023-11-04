@@ -7,6 +7,7 @@ import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,10 +25,12 @@ public class UsersService {
         return userRepository.getByUsername(username).orElseThrow(() -> new AppException("User not found", HttpStatus.NOT_FOUND, null));
     }
 
+    @Transactional
     public void delete(String username) {
         userRepository.deleteByUsername(username);
     }
 
+    @Transactional
     public User update(String username, User user) {
         User toUpdate = getByUsername(username);
         toUpdate.setAge(user.getAge());
