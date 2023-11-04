@@ -34,10 +34,10 @@ public class QuestionnairesService {
         return questionnairesRepository.findByName(name).orElseThrow(() -> new AppException("Questionnaire not found", HttpStatus.NOT_FOUND, null));
     }
 
-    public void deleteByName(String name) {
+    public void deleteByName(String name, String username) {
         questionnairesRepository.findByName(name)
                 .ifPresent(q -> {
-                    if (q.getAuthor().getUsername().equals(name)) {
+                    if (q.getAuthor().getUsername().equals(username)) {
                         questionnairesRepository.deleteByName(name);
                     } else {
                         throw new AppException("You can't delete someone else's questionnaire", HttpStatus.UNAUTHORIZED, null);

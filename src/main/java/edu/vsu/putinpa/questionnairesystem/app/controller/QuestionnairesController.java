@@ -33,7 +33,7 @@ public class QuestionnairesController implements QuestionnaireApi {
 
     @Override
     public void deleteByName(String name, String username) {
-        questionnairesService.deleteByName(name);
+        questionnairesService.deleteByName(name, username);
     }
 
     @Override
