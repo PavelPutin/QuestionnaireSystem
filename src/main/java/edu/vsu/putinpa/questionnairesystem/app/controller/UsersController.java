@@ -9,11 +9,13 @@ import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/user")
+@RestController
+@RequestMapping("/user")
 @AllArgsConstructor
 public class UsersController implements UserApi {
     private final UsersService usersService;
