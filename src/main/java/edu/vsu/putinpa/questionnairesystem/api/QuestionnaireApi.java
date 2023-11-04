@@ -17,6 +17,7 @@ public interface QuestionnaireApi {
     @GetMapping("/{name}")
     QuestionnaireDTO getByName(@PathVariable String name);
 
+    // TODO: fix: authentication principal doesn't work
     @DeleteMapping("/{name}")
     void deleteByName(@PathVariable String name, @AuthenticationPrincipal String username);
 
