@@ -5,6 +5,7 @@ import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.ChoicesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.OptionsRepository;
 import edu.vsu.putinpa.questionnairesystem.item.QuestionnairesRepository;
+import edu.vsu.putinpa.questionnairesystem.item.UserRepository;
 import edu.vsu.putinpa.questionnairesystem.item.model.Choice;
 import edu.vsu.putinpa.questionnairesystem.item.model.Option;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
@@ -25,6 +26,7 @@ public class QuestionnairesService {
     private final UsersService usersService;
     private final OptionsRepository optionsRepository;
     private final ChoicesRepository choicesRepository;
+    private final UserRepository userRepository;
 
     public List<Questionnaire> getAllBrief() {
         return questionnairesRepository.findAll();
@@ -64,6 +66,8 @@ public class QuestionnairesService {
 
         questionnaire.getAnswered().add(user);
         questionnairesRepository.save(questionnaire);
+        user.getAnswered().add(questionnaire);
+        userRepository.save(user);
 
         for (UUID optionId : voteDTO.getOptionsId()) {
             Option option = optionsRepository.findById(optionId)
