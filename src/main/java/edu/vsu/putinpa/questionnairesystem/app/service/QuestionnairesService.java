@@ -16,4 +16,8 @@ public class QuestionnairesService {
     public List<Questionnaire> getAllBrief() {
         return questionnairesRepository.findAll();
     }
+
+    public Questionnaire getByName(String name) {
+        return questionnairesRepository.findByName(name);
+    }
 }

@@ -2,6 +2,7 @@ package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 import edu.vsu.putinpa.questionnairesystem.api.QuestionnaireApi;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.QuestionnaireMapper;
 import edu.vsu.putinpa.questionnairesystem.app.service.QuestionnairesService;
 import lombok.AllArgsConstructor;
@@ -20,5 +21,10 @@ public class QuestionnairesController implements QuestionnaireApi {
     @Override
     public List<QuestionnaireBriefDTO> getAllBrief() {
         return questionnaireMapper.toDto(questionnairesService.getAllBrief());
+    }
+
+    @Override
+    public QuestionnaireDTO getByName(String name) {
+        return questionnaireMapper.toDto(questionnairesService.getByName(name));
     }
 }

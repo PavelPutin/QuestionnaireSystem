@@ -1,6 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.app.mapper;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import org.mapstruct.Mapper;
@@ -10,12 +11,15 @@ import org.mapstruct.Named;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, uses = OptionMapper.class)
 public interface QuestionnaireMapper {
 
     @Mapping(source = "answered", target = "answeredAmount", qualifiedByName = "getAnsweredAmount")
     @Mapping(source = "author", target = "authorName", qualifiedByName = "getAuthorName")
     List<QuestionnaireBriefDTO> toDto(List<Questionnaire> questionnaire);
+
+    @Mapping(source = "author", target = "authorName", qualifiedByName = "getAuthorName")
+    QuestionnaireDTO toDto(Questionnaire questionnaire);
 
     @Named("getAnsweredAmount")
     static int getAnsweredAmount(List<User> answered) {
