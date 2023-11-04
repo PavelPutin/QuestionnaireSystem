@@ -27,4 +27,9 @@ public class QuestionnairesController implements QuestionnaireApi {
     public QuestionnaireDTO getByName(String name) {
         return questionnaireMapper.toDto(questionnairesService.getByName(name));
     }
+
+    @Override
+    public void deleteByName(String name) {
+        questionnairesService.deleteByName(name);
+    }
 }

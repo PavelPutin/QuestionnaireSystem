@@ -8,4 +8,6 @@ import java.util.UUID;
 
 public interface QuestionnairesRepository extends JpaRepository<Questionnaire, UUID> {
     Questionnaire findByName(String name);
+
+    void deleteByName(String name);
 }

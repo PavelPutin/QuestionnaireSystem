@@ -20,4 +20,8 @@ public class QuestionnairesService {
     public Questionnaire getByName(String name) {
         return questionnairesRepository.findByName(name);
     }
+
+    public void deleteByName(String name) {
+        questionnairesRepository.deleteByName(name);
+    }
 }
