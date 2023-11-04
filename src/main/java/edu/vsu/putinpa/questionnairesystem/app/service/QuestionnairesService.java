@@ -50,6 +50,18 @@ public class QuestionnairesService {
         Questionnaire questionnaire = getByName(name);
         User user = usersService.getByUsername(username);
 
+        if (questionnaire.getAnswered().contains(user)) {
+            throw new AppException("Questionnaire has already answered!", HttpStatus.UNAUTHORIZED, null);
+        }
+
+        if (!questionnaire.isMultiple() && voteDTO.getOptionsId().size() > 1) {
+            throw new AppException("Unacceptable multiple choice!", HttpStatus.BAD_REQUEST, null);
+        }
+
+        if (!questionnaire.getOptions().stream().map(Option::getId).toList().containsAll(voteDTO.getOptionsId())) {
+            throw new AppException("Some options are not contained by " + name + " questionnaire", HttpStatus.BAD_REQUEST, null);
+        }
+
         questionnaire.getAnswered().add(user);
         questionnairesRepository.save(questionnaire);
 
