@@ -8,6 +8,7 @@ import edu.vsu.putinpa.questionnairesystem.app.mapper.QuestionnaireMapper;
 import edu.vsu.putinpa.questionnairesystem.app.service.QuestionnairesService;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,15 +33,15 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
-    public void deleteByName(String name, String username) {
-        questionnairesService.deleteByName(name, username);
+    public void deleteByName(String name, UserDetails user) {
+        questionnairesService.deleteByName(name, user.getUsername());
     }
 
     @Override
-    public void vote(String name, String username, VoteDTO voteDTO, BindingResult errors) {
+    public void vote(String name, UserDetails user, VoteDTO voteDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             throw new ValidationException(errors);
         }
-        questionnairesService.vote(name, username, voteDTO);
+        questionnairesService.vote(name, user.getUsername(), voteDTO);
     }
 }
