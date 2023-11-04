@@ -1,9 +1,11 @@
 package edu.vsu.putinpa.questionnairesystem.api;
 
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
@@ -21,6 +23,10 @@ public interface QuestionnaireApi {
     // TODO: fix: authentication principal doesn't work
     @DeleteMapping("/{name}")
     void deleteByName(@PathVariable String name, @AuthenticationPrincipal UserDetails user);
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    QuestionnaireDTO create(@AuthenticationPrincipal UserDetails user, @RequestBody @Valid QuestionnaireCreationDTO creationDTO, BindingResult errors);
 
     @PostMapping("/{name}/vote")
     void vote(
