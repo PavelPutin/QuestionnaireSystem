@@ -7,6 +7,7 @@ import edu.vsu.putinpa.questionnairesystem.item.CountriesRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class CountryService {
                 .orElseThrow(() -> new AppException("Country wasn't found", HttpStatus.NOT_FOUND, null));
     }
 
+    @Transactional
     public Country updateName(String id, UpdateCountryDto updateCountryDto) {
         Country country = getById(id);
         country.setValue(updateCountryDto.getName());
@@ -31,6 +33,7 @@ public class CountryService {
         return country;
     }
 
+    @Transactional
     public void delete(String id) {
         countriesRepository.deleteById(id);
     }

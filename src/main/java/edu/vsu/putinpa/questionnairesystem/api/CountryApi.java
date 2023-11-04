@@ -15,12 +15,12 @@ public interface CountryApi {
     List<CountryDTO> getAll();
 
     @PatchMapping("/{id}")
-    CountryDTO updateName(@PathVariable String id, @Valid UpdateCountryDto updateCountryDto, BindingResult errors);
+    CountryDTO updateName(@PathVariable String id, @RequestBody @Valid UpdateCountryDto updateCountryDto, BindingResult errors);
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable String id);
 
     @PostMapping
-    CountryDTO create(@Valid Country country, BindingResult errors);
+    CountryDTO create(@RequestBody @Valid Country country, BindingResult errors);
 }
