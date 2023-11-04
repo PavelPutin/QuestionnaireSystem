@@ -23,6 +23,7 @@ public class SecurityConfiguration {
                         .anyRequest().authenticated())
                 .formLogin(login -> login
                         .loginProcessingUrl("/auth/login")
+                        .defaultSuccessUrl("/questionnaire")
                         .failureUrl("/auth/login?error"))
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout"));
