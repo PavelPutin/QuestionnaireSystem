@@ -27,4 +27,14 @@ public class UsersService {
     public void delete(String username) {
         userRepository.deleteByUsername(username);
     }
+
+    public User update(String username, User user) {
+        User toUpdate = getByUsername(username);
+        toUpdate.setAge(user.getAge());
+        toUpdate.setCountry(user.getCountry());
+        toUpdate.setGender(user.getGender());
+        toUpdate.setMaritalStatus(user.getMaritalStatus());
+        userRepository.save(toUpdate);
+        return toUpdate;
+    }
 }

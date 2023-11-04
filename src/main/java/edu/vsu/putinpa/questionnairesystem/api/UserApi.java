@@ -1,11 +1,11 @@
 package edu.vsu.putinpa.questionnairesystem.api;
 
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.UserUpdateDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,4 +19,8 @@ public interface UserApi {
     @DeleteMapping("/{username}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void delete(@PathVariable String username);
+
+    @PutMapping("/{username}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    UserDTO update(@PathVariable String username, @Valid @RequestBody UserUpdateDTO updateDTO, BindingResult errors);
 }
