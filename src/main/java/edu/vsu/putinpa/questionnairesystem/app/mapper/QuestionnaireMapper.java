@@ -1,5 +1,6 @@
 package edu.vsu.putinpa.questionnairesystem.app.mapper;
 
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
@@ -21,4 +22,6 @@ public interface QuestionnaireMapper {
 
     @Mapping(target = "authorName", expression="java(questionnaire.getAuthor().getUsername())")
     QuestionnaireDTO toDto(Questionnaire questionnaire);
+
+    Questionnaire toQuestionnaire(QuestionnaireCreationDTO creationDTO);
 }

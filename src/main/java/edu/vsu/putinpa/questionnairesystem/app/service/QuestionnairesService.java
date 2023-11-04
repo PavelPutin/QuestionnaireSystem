@@ -1,6 +1,9 @@
 package edu.vsu.putinpa.questionnairesystem.app.service;
 
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.OptionCreationDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.ChoicesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.OptionsRepository;
@@ -15,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +40,7 @@ public class QuestionnairesService {
         return questionnairesRepository.findByName(name).orElseThrow(() -> new AppException("Questionnaire not found", HttpStatus.NOT_FOUND, null));
     }
 
+    @Transactional
     public void deleteByName(String name, String username) {
         questionnairesRepository.findByName(name)
                 .ifPresent(q -> {
@@ -85,5 +90,29 @@ public class QuestionnairesService {
             option.getChoices().add(choice);
             optionsRepository.save(option);
         }
+    }
+
+    @Transactional
+    public Questionnaire create(User user, QuestionnaireCreationDTO creationDTO) {
+        Questionnaire q = new Questionnaire();
+        q.setAuthor(user);
+        q.setName(creationDTO.getName());
+        q.setQuestion(creationDTO.getQuestion());
+        q.setMultiple(creationDTO.isMultiple());
+        q.setAnswered(new ArrayList<>());
+        q.setOptions(new ArrayList<>());
+
+        q = questionnairesRepository.save(q);
+
+        for (OptionCreationDTO optionCreationDTO : creationDTO.getOptions()) {
+            Option opt = new Option();
+            opt.setQuestionnaire(q);
+            opt.setText(optionCreationDTO.getText());
+            opt.setChoices(new ArrayList<>());
+            optionsRepository.save(opt);
+
+            q.getOptions().add(opt);
+        }
+        return q;
     }
 }

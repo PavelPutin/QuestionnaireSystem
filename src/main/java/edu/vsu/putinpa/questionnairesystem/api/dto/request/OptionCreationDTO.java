@@ -6,6 +6,5 @@ import java.util.UUID;
 
 @Data
 public class OptionCreationDTO {
-    private UUID id;
     private String text;
 }
