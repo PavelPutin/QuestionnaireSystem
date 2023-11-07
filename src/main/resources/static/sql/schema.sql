@@ -21,7 +21,7 @@ create table if not exists user_table
 create table if not exists questionnaire
 (
     id        uuid default gen_random_uuid() primary key,
-    name      varchar(100) not null unique,
+    name      varchar(100) not null,
     question  varchar(300) not null,
     author_id uuid,
     multiple  boolean      not null,
