@@ -4,11 +4,9 @@ import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreation
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
-import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
-import org.mapstruct.Named;
 
 import java.util.List;
 

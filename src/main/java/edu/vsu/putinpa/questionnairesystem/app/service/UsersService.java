@@ -1,6 +1,5 @@
 package edu.vsu.putinpa.questionnairesystem.app.service;
 
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.UserRepository;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;

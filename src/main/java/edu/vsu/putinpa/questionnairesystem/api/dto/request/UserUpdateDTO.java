@@ -9,8 +9,6 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-import java.util.UUID;
-
 @Data
 public class UserUpdateDTO {
     @Min(value = 1, message = "Возраст должен быть положительным числом")
