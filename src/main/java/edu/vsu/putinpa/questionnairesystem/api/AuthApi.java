@@ -11,5 +11,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public interface AuthApi {
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
-    void register(@RequestBody @Valid RegistrationDTO intervieweeRegistration, Errors errors);
+    void register(
+            @RequestBody
+            @Valid
+            RegistrationDTO intervieweeRegistration,
+            Errors errors);
 }

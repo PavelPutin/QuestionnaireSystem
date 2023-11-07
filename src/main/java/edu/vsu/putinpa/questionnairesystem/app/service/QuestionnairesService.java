@@ -3,7 +3,6 @@ package edu.vsu.putinpa.questionnairesystem.app.service;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.OptionCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.ChoicesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.OptionsRepository;
@@ -36,16 +35,16 @@ public class QuestionnairesService {
         return questionnairesRepository.findAll();
     }
 
-    public Questionnaire getByName(String name) {
-        return questionnairesRepository.findByName(name).orElseThrow(() -> new AppException("Questionnaire not found", HttpStatus.NOT_FOUND, null));
+    public Questionnaire getById(UUID id) {
+        return questionnairesRepository.findById(id).orElseThrow(() -> new AppException("Questionnaire not found", HttpStatus.NOT_FOUND, null));
     }
 
     @Transactional
-    public void deleteByName(String name, String username) {
-        questionnairesRepository.findByName(name)
+    public void deleteById(UUID id, String username) {
+        questionnairesRepository.findById(id)
                 .ifPresent(q -> {
                     if (q.getAuthor().getUsername().equals(username)) {
-                        questionnairesRepository.deleteByName(name);
+                        questionnairesRepository.deleteById(id);
                     } else {
                         throw new AppException("You can't delete someone else's questionnaire", HttpStatus.FORBIDDEN, null);
                     }
@@ -53,8 +52,8 @@ public class QuestionnairesService {
     }
 
     @Transactional
-    public void vote(String name, String username, VoteDTO voteDTO) {
-        Questionnaire questionnaire = getByName(name);
+    public void vote(UUID id, String username, VoteDTO voteDTO) {
+        Questionnaire questionnaire = getById(id);
         User user = usersService.getByUsername(username);
 
         if (questionnaire.getAnswered().contains(user)) {
@@ -66,7 +65,7 @@ public class QuestionnairesService {
         }
 
         if (!questionnaire.getOptions().stream().map(Option::getId).toList().containsAll(voteDTO.getOptionsId())) {
-            throw new AppException("Some options are not contained by " + name + " questionnaire", HttpStatus.BAD_REQUEST, null);
+            throw new AppException("Some options are not contained by " + id + " questionnaire", HttpStatus.BAD_REQUEST, null);
         }
 
         questionnaire.getAnswered().add(user);

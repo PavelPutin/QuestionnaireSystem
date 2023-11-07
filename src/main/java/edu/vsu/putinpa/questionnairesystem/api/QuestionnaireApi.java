@@ -13,19 +13,20 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface QuestionnaireApi {
     @GetMapping
     List<QuestionnaireBriefDTO> getAllBrief();
 
-    @GetMapping("/{name}")
-    QuestionnaireDTO getByName(@PathVariable String name);
+    @GetMapping("/{id}")
+    QuestionnaireDTO getByName(@PathVariable UUID id);
 
-    @DeleteMapping("/{name}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteByName(
+    void deleteById(
             @PathVariable
-            String name,
+            UUID id,
             @AuthenticationPrincipal
             UserDetails user);
 
@@ -39,10 +40,10 @@ public interface QuestionnaireApi {
             QuestionnaireCreationDTO creationDTO,
             BindingResult errors);
 
-    @PostMapping("/{name}/vote")
+    @PostMapping("/{id}/vote")
     void vote(
             @PathVariable
-            String name,
+            UUID id,
             @AuthenticationPrincipal
             UserDetails user,
             @RequestBody

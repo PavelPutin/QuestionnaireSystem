@@ -8,19 +8,15 @@ import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.QuestionnaireMapper;
 import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
 import edu.vsu.putinpa.questionnairesystem.app.service.QuestionnairesService;
-import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
-import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/questionnaire")
@@ -35,13 +31,13 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
-    public QuestionnaireDTO getByName(String name) {
-        return questionnaireMapper.toDto(questionnairesService.getByName(name));
+    public QuestionnaireDTO getByName(UUID id) {
+        return questionnaireMapper.toDto(questionnairesService.getById(id));
     }
 
     @Override
-    public void deleteByName(String name, UserDetails user) {
-        questionnairesService.deleteByName(name, user.getUsername());
+    public void deleteById(UUID id, UserDetails user) {
+        questionnairesService.deleteById(id, user.getUsername());
     }
 
     @Override
@@ -54,10 +50,10 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
-    public void vote(String name, UserDetails user, VoteDTO voteDTO, BindingResult errors) {
+    public void vote(UUID id, UserDetails user, VoteDTO voteDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             throw new ValidationException(errors);
         }
-        questionnairesService.vote(name, user.getUsername(), voteDTO);
+        questionnairesService.vote(id, user.getUsername(), voteDTO);
     }
 }
