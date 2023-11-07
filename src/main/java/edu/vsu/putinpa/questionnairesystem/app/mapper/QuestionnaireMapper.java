@@ -17,10 +17,10 @@ public interface QuestionnaireMapper {
     List<QuestionnaireBriefDTO> toDto(List<Questionnaire> questionnaire);
 
     @Mapping(target = "answeredAmount", expression="java(questionnaire.getAnswered().size())")
-    @Mapping(target = "authorName", expression="java(questionnaire.getAuthor().getUsername())")
+    @Mapping(target = "authorName", source="questionnaire.author.username")
     QuestionnaireBriefDTO toBriefDto(Questionnaire questionnaire);
 
-    @Mapping(target = "authorName", expression="java(questionnaire.getAuthor().getUsername())")
+    @Mapping(target = "authorName", source="questionnaire.author.username")
     QuestionnaireDTO toDto(Questionnaire questionnaire);
 
     Questionnaire toQuestionnaire(QuestionnaireCreationDTO creationDTO);

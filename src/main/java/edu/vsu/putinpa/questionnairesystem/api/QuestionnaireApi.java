@@ -23,16 +23,30 @@ public interface QuestionnaireApi {
 
     @DeleteMapping("/{name}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteByName(@PathVariable String name, @AuthenticationPrincipal UserDetails user);
+    void deleteByName(
+            @PathVariable
+            String name,
+            @AuthenticationPrincipal
+            UserDetails user);
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    QuestionnaireDTO create(@AuthenticationPrincipal PrincipalDetails user, @RequestBody @Valid QuestionnaireCreationDTO creationDTO, BindingResult errors);
+    QuestionnaireDTO create(
+            @AuthenticationPrincipal
+            PrincipalDetails user,
+            @RequestBody
+            @Valid
+            QuestionnaireCreationDTO creationDTO,
+            BindingResult errors);
 
     @PostMapping("/{name}/vote")
     void vote(
-            @PathVariable String name,
-            @AuthenticationPrincipal UserDetails user,
-            @RequestBody @Valid VoteDTO voteDTO,
+            @PathVariable
+            String name,
+            @AuthenticationPrincipal
+            UserDetails user,
+            @RequestBody
+            @Valid
+            VoteDTO voteDTO,
             BindingResult errors);
 }

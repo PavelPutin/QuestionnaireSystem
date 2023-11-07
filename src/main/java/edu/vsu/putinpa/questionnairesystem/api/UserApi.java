@@ -22,5 +22,11 @@ public interface UserApi {
 
     @PutMapping("/{username}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    UserDTO update(@PathVariable String username, @Valid @RequestBody UserUpdateDTO updateDTO, BindingResult errors);
+    UserDTO update(
+            @PathVariable
+            String username,
+            @RequestBody
+            @Valid
+            UserUpdateDTO updateDTO,
+            BindingResult errors);
 }

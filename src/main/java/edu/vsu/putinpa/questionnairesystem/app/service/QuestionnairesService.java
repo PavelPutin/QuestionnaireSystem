@@ -47,7 +47,7 @@ public class QuestionnairesService {
                     if (q.getAuthor().getUsername().equals(username)) {
                         questionnairesRepository.deleteByName(name);
                     } else {
-                        throw new AppException("You can't delete someone else's questionnaire", HttpStatus.UNAUTHORIZED, null);
+                        throw new AppException("You can't delete someone else's questionnaire", HttpStatus.FORBIDDEN, null);
                     }
                 });
     }
@@ -58,7 +58,7 @@ public class QuestionnairesService {
         User user = usersService.getByUsername(username);
 
         if (questionnaire.getAnswered().contains(user)) {
-            throw new AppException("Questionnaire has already answered!", HttpStatus.UNAUTHORIZED, null);
+            throw new AppException("Questionnaire has already answered!", HttpStatus.FORBIDDEN, null);
         }
 
         if (!questionnaire.isMultiple() && voteDTO.getOptionsId().size() > 1) {
