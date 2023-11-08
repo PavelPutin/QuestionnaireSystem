@@ -8,23 +8,24 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface UserApi {
     @GetMapping
     List<UserDTO> getAll();
 
-    @GetMapping("/{username}")
-    UserDTO getByUsername(@PathVariable String username);
+    @GetMapping("/{id}")
+    UserDTO getById(@PathVariable UUID id);
 
-    @DeleteMapping("/{username}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void delete(@PathVariable String username);
+    void delete(@PathVariable UUID id);
 
-    @PutMapping("/{username}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     UserDTO update(
             @PathVariable
-            String username,
+            UUID id,
             @RequestBody
             @Valid
             UserUpdateDTO updateDTO,

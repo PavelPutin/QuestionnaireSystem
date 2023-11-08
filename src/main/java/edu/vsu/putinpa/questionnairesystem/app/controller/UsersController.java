@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -27,21 +28,21 @@ public class UsersController implements UserApi {
     }
 
     @Override
-    public UserDTO getByUsername(String username) {
-        return userMapper.toDto(usersService.getByUsername(username));
+    public UserDTO getById(UUID id) {
+        return userMapper.toDto(usersService.getById(id));
     }
 
     @Override
-    public void delete(String username) {
-        usersService.delete(username);
+    public void delete(UUID id) {
+        usersService.delete(id);
     }
 
     @Override
-    public UserDTO update(String username, UserUpdateDTO updateDTO, BindingResult errors) {
+    public UserDTO update(UUID id, UserUpdateDTO updateDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             throw new ValidationException(errors);
         }
         User user = userMapper.toUser(updateDTO);
-        return userMapper.toDto(usersService.update(username, user));
+        return userMapper.toDto(usersService.update(id, user));
     }
 }

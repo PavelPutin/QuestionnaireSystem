@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -24,14 +25,18 @@ public class UsersService {
         return userRepository.getByUsername(username).orElseThrow(() -> new AppException("User not found", HttpStatus.NOT_FOUND, null));
     }
 
-    @Transactional
-    public void delete(String username) {
-        userRepository.deleteByUsername(username);
+    public User getById(UUID id) {
+        return userRepository.findById(id).orElseThrow(() -> new AppException("User not found", HttpStatus.NOT_FOUND, null));
     }
 
     @Transactional
-    public User update(String username, User user) {
-        User toUpdate = getByUsername(username);
+    public void delete(UUID id) {
+        userRepository.deleteById(id);
+    }
+
+    @Transactional
+    public User update(UUID id, User user) {
+        User toUpdate = getById(id);
         toUpdate.setAge(user.getAge());
         toUpdate.setCountry(user.getCountry());
         toUpdate.setGender(user.getGender());
