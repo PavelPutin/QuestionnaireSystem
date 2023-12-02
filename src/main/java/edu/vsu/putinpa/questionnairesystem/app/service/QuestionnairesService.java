@@ -13,6 +13,8 @@ import edu.vsu.putinpa.questionnairesystem.item.model.Option;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,8 +33,8 @@ public class QuestionnairesService {
     private final ChoicesRepository choicesRepository;
     private final UserRepository userRepository;
 
-    public List<Questionnaire> getAllBrief() {
-        return questionnairesRepository.findAll();
+    public Page<Questionnaire> getAllBrief(Pageable pageable) {
+        return questionnairesRepository.findAll(pageable);
     }
 
     public Questionnaire getById(UUID id) {

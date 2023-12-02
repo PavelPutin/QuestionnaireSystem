@@ -3,6 +3,7 @@ package edu.vsu.putinpa.questionnairesystem.api;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.AllBriefRequestDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.AllBriefDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
@@ -19,7 +20,10 @@ import java.util.UUID;
 
 public interface QuestionnaireApi {
     @GetMapping
-    List<QuestionnaireBriefDTO> getAllBrief(AllBriefRequestDto allBriefRequestDto);
+    AllBriefDto getAllBrief(
+            @Valid
+            AllBriefRequestDto allBriefRequestDto,
+            BindingResult errors);
 
     @GetMapping("/{id}")
     QuestionnaireDTO getByName(@PathVariable UUID id);
