@@ -30,7 +30,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/questionnaire")
 @RequiredArgsConstructor
-@PropertySource("classpath:questionnaireValues.yml")
+@PropertySource("classpath:application.yml")
 public class QuestionnairesController implements QuestionnaireApi {
     @Value("${questionnaire.default.page.number}")
     private int PAGE_NUMBER;

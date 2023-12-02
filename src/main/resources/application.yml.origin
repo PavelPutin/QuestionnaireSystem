@@ -10,3 +10,9 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
+
+questionnaire:
+  default:
+    page:
+      number: 0
+      size: 10
