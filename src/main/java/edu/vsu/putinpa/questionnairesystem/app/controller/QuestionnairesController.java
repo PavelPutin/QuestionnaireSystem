@@ -11,6 +11,7 @@ import edu.vsu.putinpa.questionnairesystem.app.mapper.QuestionnaireMapper;
 import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
 import edu.vsu.putinpa.questionnairesystem.app.service.QuestionnairesService;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
+import edu.vsu.putinpa.questionnairesystem.item.QuestionnairesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +28,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
+
+import static edu.vsu.putinpa.questionnairesystem.item.QuestionnairesRepository.nameContains;
+import static org.springframework.data.jpa.domain.Specification.where;
 
 @RestController
 @RequestMapping("/questionnaire")
@@ -48,9 +53,12 @@ public class QuestionnairesController implements QuestionnaireApi {
 
         int pageNumber = allBriefRequestDto.getPageNumber() == null ? PAGE_NUMBER : allBriefRequestDto.getPageNumber();
         int pageSize = allBriefRequestDto.getPageSize() == null ? PAGE_SIZE : allBriefRequestDto.getPageSize();
-
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<Questionnaire> page = questionnairesService.getAllBrief(pageable);
+
+        String name = allBriefRequestDto.getQuestionnaireNameSearch() == null ? "" : allBriefRequestDto.getQuestionnaireNameSearch();
+        Specification<Questionnaire> specification = where(nameContains(name));
+
+        Page<Questionnaire> page = questionnairesService.getAllBrief(specification, pageable);
         AllBriefDto responseBody = new AllBriefDto();
 
         List<QuestionnaireBriefDTO> briefDTOList = questionnaireMapper.toDto(page.getContent());
