@@ -1,6 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 import edu.vsu.putinpa.questionnairesystem.api.QuestionnaireApi;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.AllBriefRequestDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
@@ -26,7 +27,7 @@ public class QuestionnairesController implements QuestionnaireApi {
     private final QuestionnaireMapper questionnaireMapper;
 
     @Override
-    public List<QuestionnaireBriefDTO> getAllBrief() {
+    public List<QuestionnaireBriefDTO> getAllBrief(AllBriefRequestDto allBriefRequestDto) {
         return questionnaireMapper.toDto(questionnairesService.getAllBrief());
     }
 

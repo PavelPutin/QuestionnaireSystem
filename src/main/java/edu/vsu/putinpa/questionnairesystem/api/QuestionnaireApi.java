@@ -1,5 +1,6 @@
 package edu.vsu.putinpa.questionnairesystem.api;
 
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.AllBriefRequestDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
@@ -13,11 +14,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public interface QuestionnaireApi {
     @GetMapping
-    List<QuestionnaireBriefDTO> getAllBrief();
+    List<QuestionnaireBriefDTO> getAllBrief(AllBriefRequestDto allBriefRequestDto);
 
     @GetMapping("/{id}")
     QuestionnaireDTO getByName(@PathVariable UUID id);
