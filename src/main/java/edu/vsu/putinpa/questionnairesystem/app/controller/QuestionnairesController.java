@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.UUID;
 
+import static edu.vsu.putinpa.questionnairesystem.item.QuestionnairesRepository.hasAuthor;
 import static edu.vsu.putinpa.questionnairesystem.item.QuestionnairesRepository.nameContains;
 import static org.springframework.data.jpa.domain.Specification.where;
 
@@ -56,7 +57,8 @@ public class QuestionnairesController implements QuestionnaireApi {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
 
         String name = allBriefRequestDto.getQuestionnaireNameSearch() == null ? "" : allBriefRequestDto.getQuestionnaireNameSearch();
-        Specification<Questionnaire> specification = where(nameContains(name));
+        String authorName = allBriefRequestDto.getAuthorNameSearch() == null ? "" : allBriefRequestDto.getAuthorNameSearch();
+        Specification<Questionnaire> specification = where(nameContains(name)).and(hasAuthor(authorName));
 
         Page<Questionnaire> page = questionnairesService.getAllBrief(specification, pageable);
         AllBriefDto responseBody = new AllBriefDto();

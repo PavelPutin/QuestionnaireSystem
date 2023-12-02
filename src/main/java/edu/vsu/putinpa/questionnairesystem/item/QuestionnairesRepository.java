@@ -18,4 +18,8 @@ public interface QuestionnairesRepository extends
     static Specification<Questionnaire> nameContains(String name) {
         return (questionnaire, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(questionnaire.get("name"), "%" + name + "%");
     }
+
+    static Specification<Questionnaire> hasAuthor(String authorName) {
+        return (questionnaire, criteriaQuery, criteriaBuilder) -> criteriaBuilder.like(questionnaire.get("author").get("username"), "%" + authorName + "%");
+    }
 }
