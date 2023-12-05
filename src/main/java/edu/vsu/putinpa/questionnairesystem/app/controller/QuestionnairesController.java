@@ -75,6 +75,11 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
+    public List<QuestionnaireBriefDTO> getPopular() {
+        return questionnaireMapper.toDto(questionnairesService.getPopular(5));
+    }
+
+    @Override
     public QuestionnaireDTO getByName(UUID id) {
         return questionnaireMapper.toDto(questionnairesService.getById(id));
     }

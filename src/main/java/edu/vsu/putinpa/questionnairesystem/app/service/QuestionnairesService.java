@@ -3,6 +3,7 @@ package edu.vsu.putinpa.questionnairesystem.app.service;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.OptionCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.ChoicesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.OptionsRepository;
@@ -13,8 +14,11 @@ import edu.vsu.putinpa.questionnairesystem.item.model.Option;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
+import org.hibernate.query.spi.Limit;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -116,5 +120,9 @@ public class QuestionnairesService {
             q.getOptions().add(opt);
         }
         return q;
+    }
+
+    public List<Questionnaire> getPopular(int i) {
+        return questionnairesRepository.findAll(PageRequest.of(0, 5, Sort.by("answeredCount"))).getContent();
     }
 }

@@ -25,6 +25,9 @@ public interface QuestionnaireApi {
             AllBriefRequestDto allBriefRequestDto,
             BindingResult errors);
 
+    @GetMapping("/popular")
+    List<QuestionnaireBriefDTO> getPopular();
+
     @GetMapping("/{id}")
     QuestionnaireDTO getByName(@PathVariable UUID id);
 
