@@ -122,7 +122,7 @@ public class QuestionnairesService {
         return q;
     }
 
-    public List<Questionnaire> getPopular(int i) {
-        return questionnairesRepository.findAll(PageRequest.of(0, 5, Sort.by("answeredCount"))).getContent();
+    public List<Questionnaire> getPopular() {
+        return questionnairesRepository.getPopular();
     }
 }
