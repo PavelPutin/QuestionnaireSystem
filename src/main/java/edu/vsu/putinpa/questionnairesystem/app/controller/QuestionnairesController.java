@@ -20,6 +20,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.BindingResult;
@@ -54,7 +55,7 @@ public class QuestionnairesController implements QuestionnaireApi {
 
         int pageNumber = allBriefRequestDto.getPageNumber() == null ? PAGE_NUMBER : allBriefRequestDto.getPageNumber();
         int pageSize = allBriefRequestDto.getPageSize() == null ? PAGE_SIZE : allBriefRequestDto.getPageSize();
-        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, Sort.by("id"));
 
         String name = allBriefRequestDto.getQuestionnaireNameSearch() == null ? "" : allBriefRequestDto.getQuestionnaireNameSearch();
         String authorName = allBriefRequestDto.getAuthorNameSearch() == null ? "" : allBriefRequestDto.getAuthorNameSearch();
