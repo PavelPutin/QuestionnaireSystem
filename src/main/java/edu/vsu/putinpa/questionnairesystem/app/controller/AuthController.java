@@ -9,12 +9,14 @@ import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
 @AllArgsConstructor
+@CrossOrigin
 public class AuthController implements AuthApi {
     private final RegistrationService registrationService;
     private final UserMapper userMapper;

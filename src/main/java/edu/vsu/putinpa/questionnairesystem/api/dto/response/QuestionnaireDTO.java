@@ -11,6 +11,7 @@ public class QuestionnaireDTO {
     private String name;
     private String question;
     private boolean multiple;
+    private UUID authorId;
     private String authorName;
     private List<OptionDTO> options;
 }

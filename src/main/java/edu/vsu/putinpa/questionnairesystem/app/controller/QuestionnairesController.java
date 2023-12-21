@@ -81,7 +81,7 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
-    public QuestionnaireDTO getByName(UUID id) {
+    public QuestionnaireDTO getById(UUID id) {
         return questionnaireMapper.toDto(questionnairesService.getById(id));
     }
 

@@ -15,7 +15,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface QuestionnaireApi {
@@ -29,7 +28,7 @@ public interface QuestionnaireApi {
     List<QuestionnaireBriefDTO> getPopular();
 
     @GetMapping("/{id}")
-    QuestionnaireDTO getByName(@PathVariable UUID id);
+    QuestionnaireDTO getById(@PathVariable UUID id);
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

@@ -19,6 +19,7 @@ public interface QuestionnaireMapper {
     QuestionnaireBriefDTO toBriefDto(Questionnaire questionnaire);
 
     @Mapping(target = "authorName", source="questionnaire.author.username")
+    @Mapping(target = "authorId", source="questionnaire.author.id")
     QuestionnaireDTO toDto(Questionnaire questionnaire);
 
     Questionnaire toQuestionnaire(QuestionnaireCreationDTO creationDTO);
