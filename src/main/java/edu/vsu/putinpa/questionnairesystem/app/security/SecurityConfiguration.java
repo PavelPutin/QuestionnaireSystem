@@ -28,9 +28,9 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/registration", "/auth/login", "/questionnaire", "/questionnaire/popular", "/country").permitAll()
                         .anyRequest().authenticated())
-                .formLogin(login -> login
-                        .loginProcessingUrl("/auth/login")
-                        .failureUrl("/auth/login?error"))
+//                .formLogin(login -> login
+//                        .loginProcessingUrl("/auth/login")
+//                        .failureUrl("/auth/login?error"))
                 .logout(logout -> logout
                         .logoutUrl("/auth/logout"));
         return http.build();

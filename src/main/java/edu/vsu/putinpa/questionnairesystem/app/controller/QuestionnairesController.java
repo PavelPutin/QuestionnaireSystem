@@ -5,6 +5,7 @@ import edu.vsu.putinpa.questionnairesystem.api.dto.request.AllBriefRequestDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.AllBriefDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.HasUserAnsweredDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.QuestionnaireMapper;
@@ -105,5 +106,13 @@ public class QuestionnairesController implements QuestionnaireApi {
             throw new ValidationException(errors);
         }
         questionnairesService.vote(id, user.getUsername(), voteDTO);
+    }
+
+    @Override
+    public HasUserAnsweredDto hasUserAnswered(UUID id, UserDetails user) {
+        boolean result = questionnairesService.hasUserAnswered(id, user.getUsername());
+        HasUserAnsweredDto dto = new HasUserAnsweredDto();
+        dto.setResult(result);
+        return dto;
     }
 }

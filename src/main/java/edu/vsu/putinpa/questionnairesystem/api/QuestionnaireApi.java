@@ -4,6 +4,7 @@ import edu.vsu.putinpa.questionnairesystem.api.dto.request.AllBriefRequestDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.AllBriefDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.HasUserAnsweredDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
@@ -58,4 +59,11 @@ public interface QuestionnaireApi {
             @Valid
             VoteDTO voteDTO,
             BindingResult errors);
+
+    @GetMapping("/{id}/hasAnswered")
+    HasUserAnsweredDto hasUserAnswered(
+            @PathVariable UUID id,
+            @AuthenticationPrincipal
+            UserDetails user
+    );
 }

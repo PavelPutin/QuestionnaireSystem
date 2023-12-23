@@ -4,6 +4,7 @@ import edu.vsu.putinpa.questionnairesystem.api.dto.request.OptionCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
+import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.ChoicesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.OptionsRepository;
@@ -21,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -124,5 +126,11 @@ public class QuestionnairesService {
 
     public List<Questionnaire> getPopular() {
         return questionnairesRepository.getPopular();
+    }
+
+    public boolean hasUserAnswered(UUID id, String username) {
+        Questionnaire q = questionnairesRepository.findById(id).orElseThrow(() -> new AppException("Questionnaire not found", HttpStatus.NOT_FOUND, null));
+        User user = usersService.getByUsername(username);
+        return q.getAnswered().contains(user);
     }
 }
