@@ -2,6 +2,7 @@ package edu.vsu.putinpa.questionnairesystem.api;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.LoginDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.Errors;
@@ -20,7 +21,7 @@ public interface AuthApi {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    boolean login(
+    UserDTO login(
             @RequestBody
             @Valid
             LoginDto loginDto,

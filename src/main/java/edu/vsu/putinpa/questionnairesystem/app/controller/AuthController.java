@@ -4,6 +4,7 @@ package edu.vsu.putinpa.questionnairesystem.app.controller;
 import edu.vsu.putinpa.questionnairesystem.api.AuthApi;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.LoginDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.UserMapper;
 import edu.vsu.putinpa.questionnairesystem.app.service.RegistrationService;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
@@ -32,7 +33,7 @@ public class AuthController implements AuthApi {
     }
 
     @Override
-    public boolean login(LoginDto loginDto, Errors errors) {
-        return registrationService.login(loginDto.username(), loginDto.password());
+    public UserDTO login(LoginDto loginDto, Errors errors) {
+        return userMapper.toDto(registrationService.login(loginDto.username(), loginDto.password()));
     }
 }
