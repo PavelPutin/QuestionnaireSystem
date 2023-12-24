@@ -34,6 +34,10 @@ public class AuthController implements AuthApi {
 
     @Override
     public UserDTO login(LoginDto loginDto, Errors errors) {
+        System.out.println(loginDto);
+        if (errors.hasErrors()) {
+            throw new ValidationException(errors);
+        }
         return userMapper.toDto(registrationService.login(loginDto.username(), loginDto.password()));
     }
 }

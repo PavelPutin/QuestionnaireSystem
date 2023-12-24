@@ -5,6 +5,7 @@ import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.CountriesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.model.Country;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,7 @@ public class CountryService {
     private final CountriesRepository countriesRepository;
 
     public List<Country> getAll() {
-        return countriesRepository.findAll();
+        return countriesRepository.findAll(Sort.by("value"));
     }
 
     public Country getById(String id) {

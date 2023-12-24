@@ -9,7 +9,6 @@ public record LoginDto(
         @Length(max = 100, message = "Длина имени пользователя не должна превосходить 100 символов")
         @NotNull(message = "Имя пользователя обязательно")
         @LatinAndDigitsOnly
-        @UniqueUser
         String username,
         @Length(max = 60, message = "Длина пароля не должна превосходить 60 символов")
         @NotNull(message = "Пароль обязателен")

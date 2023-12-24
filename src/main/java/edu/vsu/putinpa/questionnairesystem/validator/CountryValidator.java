@@ -15,6 +15,6 @@ public class CountryValidator implements ConstraintValidator<CountryExists, Stri
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return countriesRepository.existsById(value);
+        return value == null || countriesRepository.existsById(value);
     }
 }

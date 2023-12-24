@@ -23,13 +23,13 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/registration", "/auth/login", "/questionnaire", "/questionnaire/popular", "/country").permitAll()
+                        .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors((httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
                         .configurationSource(corsConfigurationSource())))
                 .httpBasic(Customizer.withDefaults())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/registration", "/auth/login", "/questionnaire", "/questionnaire/popular", "/country").permitAll()
-                        .anyRequest().authenticated())
 //                .formLogin(login -> login
 //                        .loginProcessingUrl("/auth/login")
 //                        .failureUrl("/auth/login?error"))
