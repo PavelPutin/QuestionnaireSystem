@@ -17,12 +17,12 @@ public class UserUpdateDTO {
 
     @NotNull(message = "Пол обязателен")
     @ValueOfEnum(enumClass = Gender.class)
-    private Gender gender;
+    private String gender;
 
     @NotNull(message = "Семейное положение обязательно")
     @ValueOfEnum(enumClass = MaritalStatus.class)
-    private MaritalStatus maritalStatus;
+    private String maritalStatus;
 
     @CountryExists
-    private Country country;
+    private String country;
 }

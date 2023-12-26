@@ -9,6 +9,7 @@ import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/user")
 @AllArgsConstructor
+@CrossOrigin
 public class UsersController implements UserApi {
     private final UsersService usersService;
     private final UserMapper userMapper;
@@ -43,6 +45,7 @@ public class UsersController implements UserApi {
             throw new ValidationException(errors);
         }
         User user = userMapper.toUser(updateDTO);
-        return userMapper.toDto(usersService.update(id, user));
+        var result = userMapper.toDto(usersService.update(id, user));
+        return result;
     }
 }

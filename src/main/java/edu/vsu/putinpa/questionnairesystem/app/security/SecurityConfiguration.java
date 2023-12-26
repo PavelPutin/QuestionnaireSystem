@@ -29,12 +29,12 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors((httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer
                         .configurationSource(corsConfigurationSource())))
-                .httpBasic(Customizer.withDefaults())
+                .httpBasic(Customizer.withDefaults());
 //                .formLogin(login -> login
 //                        .loginProcessingUrl("/auth/login")
 //                        .failureUrl("/auth/login?error"))
-                .logout(logout -> logout
-                        .logoutUrl("/auth/logout"));
+//                .logout(logout -> logout
+//                        .logoutUrl("/auth/logout"));
         return http.build();
     }
 

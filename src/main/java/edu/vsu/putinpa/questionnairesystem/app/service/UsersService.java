@@ -42,6 +42,6 @@ public class UsersService {
         toUpdate.setGender(user.getGender());
         toUpdate.setMaritalStatus(user.getMaritalStatus());
         userRepository.save(toUpdate);
-        return toUpdate;
+        return userRepository.findById(id).orElseThrow();
     }
 }

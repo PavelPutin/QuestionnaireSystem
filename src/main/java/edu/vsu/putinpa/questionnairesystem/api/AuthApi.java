@@ -3,8 +3,11 @@ package edu.vsu.putinpa.questionnairesystem.api;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.LoginDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,4 +30,8 @@ public interface AuthApi {
             LoginDto loginDto,
             Errors errors
     );
+
+    @PostMapping("/logout")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void logout(Authentication authentication, HttpServletRequest request, HttpServletResponse response);
 }
