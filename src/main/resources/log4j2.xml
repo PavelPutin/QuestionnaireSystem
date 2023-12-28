@@ -1,0 +1,19 @@
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="debug" name="questionnaire.system" packages="">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{dd.MM.yyyy HH:mm.ss} %p %m%n"/>
+        </Console>
+        <File name="fout" fileName="questionnaire.log" append="true">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="fout"/>
+        </Root>
+    </Loggers>
+</Configuration>
