@@ -15,6 +15,7 @@ import edu.vsu.putinpa.questionnairesystem.item.model.Option;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.hibernate.query.spi.Limit;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,6 +33,7 @@ import java.util.UUID;
 
 @Service
 @AllArgsConstructor
+@Log4j2
 public class QuestionnairesService {
 
     private final QuestionnairesRepository questionnairesRepository;
@@ -66,15 +68,21 @@ public class QuestionnairesService {
         User user = usersService.getByUsername(username);
 
         if (questionnaire.getAnswered().contains(user)) {
-            throw new AppException("Questionnaire has already answered!", HttpStatus.FORBIDDEN, null);
+            AppException e = new AppException("Questionnaire has already answered!", HttpStatus.FORBIDDEN, null);
+            log.info("User tried to vote the questionnaire one more time");
+            throw e;
         }
 
         if (!questionnaire.isMultiple() && voteDTO.getOptionsId().size() > 1) {
-            throw new AppException("Unacceptable multiple choice!", HttpStatus.BAD_REQUEST, null);
+            AppException e = new AppException("Unacceptable multiple choice!", HttpStatus.BAD_REQUEST, null);
+            log.info("User tried to vote for multiple choices while questionnaire isn't multicoicable");
+            throw e;
         }
 
         if (!questionnaire.getOptions().stream().map(Option::getId).toList().containsAll(voteDTO.getOptionsId())) {
-            throw new AppException("Some options are not contained by " + id + " questionnaire", HttpStatus.BAD_REQUEST, null);
+            AppException e = new AppException("Some options are not contained by " + id + " questionnaire", HttpStatus.BAD_REQUEST, null);
+            log.info("User tried to vote not this questionnaire options");
+            throw e;
         }
 
         questionnaire.getAnswered().add(user);

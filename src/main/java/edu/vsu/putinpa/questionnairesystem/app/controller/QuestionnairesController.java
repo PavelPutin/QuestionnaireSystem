@@ -11,11 +11,13 @@ import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.QuestionnaireMapper;
 import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
 import edu.vsu.putinpa.questionnairesystem.app.service.QuestionnairesService;
+import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
 import edu.vsu.putinpa.questionnairesystem.item.QuestionnairesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
@@ -39,6 +41,7 @@ import static org.springframework.data.jpa.domain.Specification.where;
 @RequestMapping("/questionnaire")
 @RequiredArgsConstructor
 @PropertySource("classpath:application.yml")
+@Log4j2
 public class QuestionnairesController implements QuestionnaireApi {
     @Value("${questionnaire.default.page.number}")
     private int PAGE_NUMBER;
@@ -94,7 +97,9 @@ public class QuestionnairesController implements QuestionnaireApi {
     @Override
     public QuestionnaireDTO create(PrincipalDetails user, QuestionnaireCreationDTO creationDTO, BindingResult errors) {
         if (errors.hasErrors()) {
-            throw new ValidationException(errors);
+            AppException e = new ValidationException(errors);
+            log.info("User tried to create questionnaire with invalid data: " + e.getMessage());
+            throw e;
         }
 
         return questionnaireMapper.toDto(questionnairesService.create(user.user(), creationDTO));
@@ -103,7 +108,9 @@ public class QuestionnairesController implements QuestionnaireApi {
     @Override
     public void vote(UUID id, UserDetails user, VoteDTO voteDTO, BindingResult errors) {
         if (errors.hasErrors()) {
-            throw new ValidationException(errors);
+            AppException e = new ValidationException(errors);
+            log.info("User tried to vote with invalid data: " + e.getMessage());
+            throw e;
         }
         questionnairesService.vote(id, user.getUsername(), voteDTO);
     }

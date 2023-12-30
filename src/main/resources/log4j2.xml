@@ -3,7 +3,7 @@
         <Console name="console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{dd.MM.yyyy HH:mm.ss} %p %m%n"/>
         </Console>
-        <File name="fout" fileName="questionnaire.log" append="true">
+        <File name="file_out" fileName="questionnaire.log">
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
             </PatternLayout>
@@ -13,7 +13,7 @@
     <Loggers>
         <Root level="DEBUG">
             <AppenderRef ref="console"/>
-            <AppenderRef ref="fout"/>
+            <AppenderRef ref="file_out"/>
         </Root>
     </Loggers>
 </Configuration>
