@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class AllBriefDto {
-    private List<QuestionnaireBriefDTO> briefDTOList;
+    private List<QuestionnaireBriefDto> briefDTOList;
     private int totalPages;
     private boolean hasNext;
     private boolean hasPrevious;

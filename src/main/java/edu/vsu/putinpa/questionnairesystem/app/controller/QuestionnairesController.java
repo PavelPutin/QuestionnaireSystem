@@ -2,20 +2,18 @@ package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 import edu.vsu.putinpa.questionnairesystem.api.QuestionnaireApi;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.AllBriefRequestDto;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.AllBriefDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.HasUserAnsweredDto;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDto;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.QuestionnaireMapper;
 import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
 import edu.vsu.putinpa.questionnairesystem.app.service.QuestionnairesService;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.exception.ValidationException;
-import edu.vsu.putinpa.questionnairesystem.item.QuestionnairesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,7 +66,7 @@ public class QuestionnairesController implements QuestionnaireApi {
         Page<Questionnaire> page = questionnairesService.getAllBrief(specification, pageable);
         AllBriefDto responseBody = new AllBriefDto();
 
-        List<QuestionnaireBriefDTO> briefDTOList = questionnaireMapper.toDto(page.getContent());
+        List<QuestionnaireBriefDto> briefDTOList = questionnaireMapper.toDto(page.getContent());
         responseBody.setBriefDTOList(briefDTOList);
 
         responseBody.setNumber(page.getNumber());
@@ -80,12 +78,12 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
-    public List<QuestionnaireBriefDTO> getPopular() {
+    public List<QuestionnaireBriefDto> getPopular() {
         return questionnaireMapper.toDto(questionnairesService.getPopular());
     }
 
     @Override
-    public QuestionnaireDTO getById(UUID id) {
+    public QuestionnaireDto getById(UUID id) {
         return questionnaireMapper.toDto(questionnairesService.getById(id));
     }
 
@@ -95,7 +93,7 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
-    public QuestionnaireDTO create(PrincipalDetails user, QuestionnaireCreationDTO creationDTO, BindingResult errors) {
+    public QuestionnaireDto create(PrincipalDetails user, QuestionnaireCreationDto creationDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             AppException e = new ValidationException(errors);
             log.info("User tried to create questionnaire with invalid data: " + e.getMessage());
@@ -106,7 +104,7 @@ public class QuestionnairesController implements QuestionnaireApi {
     }
 
     @Override
-    public void vote(UUID id, UserDetails user, VoteDTO voteDTO, BindingResult errors) {
+    public void vote(UUID id, UserDetails user, VoteDto voteDTO, BindingResult errors) {
         if (errors.hasErrors()) {
             AppException e = new ValidationException(errors);
             log.info("User tried to vote with invalid data: " + e.getMessage());

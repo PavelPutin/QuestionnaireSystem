@@ -8,7 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import java.util.List;
 
 @Data
-public class QuestionnaireCreationDTO {
+public class QuestionnaireCreationDto {
     @NotNull
     @Length(min = 1, max = 100)
     private String name;
@@ -22,5 +22,5 @@ public class QuestionnaireCreationDTO {
 
     @NotNull
     @NotEmpty
-    private List<OptionCreationDTO> options;
+    private List<OptionCreationDto> options;
 }

@@ -1,7 +1,7 @@
 package edu.vsu.putinpa.questionnairesystem.api;
 
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.UserUpdateDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.UserUpdateDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -12,10 +12,10 @@ import java.util.UUID;
 
 public interface UserApi {
     @GetMapping
-    List<UserDTO> getAll();
+    List<UserDto> getAll();
 
     @GetMapping("/{id}")
-    UserDTO getById(@PathVariable UUID id);
+    UserDto getById(@PathVariable UUID id);
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -23,11 +23,11 @@ public interface UserApi {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    UserDTO update(
+    UserDto update(
             @PathVariable
             UUID id,
             @RequestBody
             @Valid
-            UserUpdateDTO updateDTO,
+            UserUpdateDto updateDTO,
             BindingResult errors);
 }

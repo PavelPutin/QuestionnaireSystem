@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class QuestionnaireBriefDTO {
+public class QuestionnaireBriefDto {
     private UUID id;
     private String name;
     private String question;

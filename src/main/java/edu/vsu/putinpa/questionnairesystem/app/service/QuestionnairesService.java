@@ -1,10 +1,8 @@
 package edu.vsu.putinpa.questionnairesystem.app.service;
 
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.OptionCreationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
-import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.OptionCreationDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDto;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
 import edu.vsu.putinpa.questionnairesystem.item.ChoicesRepository;
 import edu.vsu.putinpa.questionnairesystem.item.OptionsRepository;
@@ -16,14 +14,10 @@ import edu.vsu.putinpa.questionnairesystem.item.model.Questionnaire;
 import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.hibernate.query.spi.Limit;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,7 +57,7 @@ public class QuestionnairesService {
     }
 
     @Transactional
-    public void vote(UUID id, String username, VoteDTO voteDTO) {
+    public void vote(UUID id, String username, VoteDto voteDTO) {
         Questionnaire questionnaire = getById(id);
         User user = usersService.getByUsername(username);
 
@@ -109,7 +103,7 @@ public class QuestionnairesService {
     }
 
     @Transactional
-    public Questionnaire create(User user, QuestionnaireCreationDTO creationDTO) {
+    public Questionnaire create(User user, QuestionnaireCreationDto creationDTO) {
         Questionnaire q = new Questionnaire();
         q.setAuthor(user);
         q.setName(creationDTO.getName());
@@ -120,7 +114,7 @@ public class QuestionnairesService {
 
         q = questionnairesRepository.save(q);
 
-        for (OptionCreationDTO optionCreationDTO : creationDTO.getOptions()) {
+        for (OptionCreationDto optionCreationDTO : creationDTO.getOptions()) {
             Option opt = new Option();
             opt.setQuestionnaire(q);
             opt.setText(optionCreationDTO.getText());

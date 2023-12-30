@@ -2,7 +2,7 @@ package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 import edu.vsu.putinpa.questionnairesystem.api.CountryApi;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.UpdateCountryDto;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.CountryDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.CountryDto;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.CountryMapper;
 import edu.vsu.putinpa.questionnairesystem.app.service.CountryService;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
@@ -25,13 +25,13 @@ public class CountryController implements CountryApi {
     private final CountryMapper countryMapper;
 
     @Override
-    public List<CountryDTO> getAll() {
+    public List<CountryDto> getAll() {
         List<Country> result = countryService.getAll();
         return countryMapper.toCountryDto(result);
     }
 
     @Override
-    public CountryDTO updateName(String id, UpdateCountryDto updateCountryDto, BindingResult errors) {
+    public CountryDto updateName(String id, UpdateCountryDto updateCountryDto, BindingResult errors) {
         if (errors.hasErrors()) {
             AppException e = new ValidationException(errors);
             log.info("User tried to update country with invalid name: " + e.getMessage());
@@ -47,7 +47,7 @@ public class CountryController implements CountryApi {
     }
 
     @Override
-    public CountryDTO create(Country country, BindingResult errors) {
+    public CountryDto create(Country country, BindingResult errors) {
         if (errors.hasErrors()) {
             AppException e = new ValidationException(errors);
             log.info("User tried to create country with invalid name: " + e.getMessage());

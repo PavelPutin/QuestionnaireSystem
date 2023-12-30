@@ -3,8 +3,8 @@ package edu.vsu.putinpa.questionnairesystem.app.controller;
 
 import edu.vsu.putinpa.questionnairesystem.api.AuthApi;
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.LoginDto;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDto;
 import edu.vsu.putinpa.questionnairesystem.app.mapper.UserMapper;
 import edu.vsu.putinpa.questionnairesystem.app.service.RegistrationService;
 import edu.vsu.putinpa.questionnairesystem.exception.AppException;
@@ -13,14 +13,10 @@ import edu.vsu.putinpa.questionnairesystem.item.model.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,7 +30,7 @@ public class AuthController implements AuthApi {
     private final SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
 
     @Override
-    public void register(RegistrationDTO registrationDTO, Errors errors) {
+    public void register(RegistrationDto registrationDTO, Errors errors) {
         if (errors.hasErrors()) {
             AppException e = new ValidationException(errors);
             log.info("User tried to register with invalid data: " + e.getMessage());
@@ -45,7 +41,7 @@ public class AuthController implements AuthApi {
     }
 
     @Override
-    public UserDTO login(LoginDto loginDto, Errors errors) {
+    public UserDto login(LoginDto loginDto, Errors errors) {
         if (errors.hasErrors()) {
             AppException e = new ValidationException(errors);
             log.info("User tried to log in with invalid data: " + e.getMessage());

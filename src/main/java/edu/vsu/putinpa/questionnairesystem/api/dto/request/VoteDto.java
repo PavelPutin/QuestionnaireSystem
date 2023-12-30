@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public class VoteDTO {
+public class VoteDto {
     @NotEmpty
     @NotNull
     private List<UUID> optionsId;

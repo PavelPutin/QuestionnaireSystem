@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.UUID;
 
 @Data
-public class QuestionnaireDTO {
+public class QuestionnaireDto {
     private UUID id;
     private String name;
     private String question;
     private boolean multiple;
     private UUID authorId;
     private String authorName;
-    private List<OptionDTO> options;
+    private List<OptionDto> options;
 }

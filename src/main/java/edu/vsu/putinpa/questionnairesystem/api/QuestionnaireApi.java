@@ -1,12 +1,12 @@
 package edu.vsu.putinpa.questionnairesystem.api;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.AllBriefRequestDto;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.QuestionnaireCreationDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.VoteDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.AllBriefDto;
 import edu.vsu.putinpa.questionnairesystem.api.dto.response.HasUserAnsweredDto;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireBriefDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.QuestionnaireDto;
 import edu.vsu.putinpa.questionnairesystem.app.security.PrincipalDetails;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -26,10 +26,10 @@ public interface QuestionnaireApi {
             BindingResult errors);
 
     @GetMapping("/popular")
-    List<QuestionnaireBriefDTO> getPopular();
+    List<QuestionnaireBriefDto> getPopular();
 
     @GetMapping("/{id}")
-    QuestionnaireDTO getById(@PathVariable UUID id);
+    QuestionnaireDto getById(@PathVariable UUID id);
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -41,12 +41,12 @@ public interface QuestionnaireApi {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    QuestionnaireDTO create(
+    QuestionnaireDto create(
             @AuthenticationPrincipal
             PrincipalDetails user,
             @RequestBody
             @Valid
-            QuestionnaireCreationDTO creationDTO,
+            QuestionnaireCreationDto creationDTO,
             BindingResult errors);
 
     @PostMapping("/{id}/vote")
@@ -57,7 +57,7 @@ public interface QuestionnaireApi {
             UserDetails user,
             @RequestBody
             @Valid
-            VoteDTO voteDTO,
+            VoteDto voteDTO,
             BindingResult errors);
 
     @GetMapping("/{id}/hasAnswered")

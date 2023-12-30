@@ -1,8 +1,8 @@
 package edu.vsu.putinpa.questionnairesystem.api;
 
 import edu.vsu.putinpa.questionnairesystem.api.dto.request.LoginDto;
-import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDTO;
-import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDTO;
+import edu.vsu.putinpa.questionnairesystem.api.dto.request.RegistrationDto;
+import edu.vsu.putinpa.questionnairesystem.api.dto.response.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -19,12 +19,12 @@ public interface AuthApi {
     void register(
             @RequestBody
             @Valid
-            RegistrationDTO intervieweeRegistration,
+            RegistrationDto intervieweeRegistration,
             Errors errors);
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    UserDTO login(
+    UserDto login(
             @RequestBody
             @Valid
             LoginDto loginDto,

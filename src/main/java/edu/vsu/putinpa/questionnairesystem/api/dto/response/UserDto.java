@@ -7,11 +7,11 @@ import lombok.Data;
 import java.util.UUID;
 
 @Data
-public class UserDTO {
+public class UserDto {
     private UUID id;
     private String username;
     private int age;
     private Gender gender;
     private MaritalStatus maritalStatus;
-    private CountryDTO country;
+    private CountryDto country;
 }
